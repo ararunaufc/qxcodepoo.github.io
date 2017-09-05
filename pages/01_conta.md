@@ -1,16 +1,16 @@
 ---
-layout: post
+layout: page
 title:  "Conta Bancária"
-date:   2017-04-04 16:16:01 -0600
 categories: poo
+exclude: true
 ---
 
 ## Conta Bancária
-![](/assets/01_conta/figura.png)
+![](/pages/01_conta/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por gerenciar a conta bancária de um único cliente. Faremos operações de saque, depósito e extrato.
 
-[**Execute o projeto**](/assets/01_conta/code/pagina.html)
+[**Execute o projeto**](/pages/01_conta/code/pagina.html)
 
 ## Funcionalidades
 
@@ -77,4 +77,4 @@ $descricao3 $valor3 $saldo3
 
 O diagrama é uma **sugestão** de métodos e parâmetros. Sinta-se livre para alterar conforme sua necessidade. Os métodos gets e sets são omitidos em diagramas de classes.
 
-![](/assets/01_conta/diagrama.png)
+![](/pages/01_conta/diagrama.png)

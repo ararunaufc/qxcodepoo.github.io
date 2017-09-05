@@ -1,16 +1,16 @@
 ---
 layout: post
 title:  "Contato Telefônico"
-date:   2017-04-04 16:16:01 -0600
 categories: poo
+exclude: true
 ---
 
 # Contato Telefônico
-![](/assets/01_contato/figura.png)
+![](/pages/01_contato/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por guardar um **único** contato da agenda telefônica do seu celular. Cada contato pode ter vários telefones e email.
 
-[**Execute o projeto**](/assets/01_contato/code/pagina.html)
+[**Execute o projeto**](/pages/01_contato/code/pagina.html)
 
 ## Requisitos de contatos
 Seu sistema deverá:
@@ -78,4 +78,4 @@ $foneid $number
 ## Diagrama UML
 Métodos como gets, sets, show e toString() omitidos. Crie-os onde julgar necessários.
 
-![](/assets/01_contato/diagrama.png)
+![](/pages/01_contato/diagrama.png)

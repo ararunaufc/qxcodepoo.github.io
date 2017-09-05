@@ -6,20 +6,25 @@ layout: page
 ---
 # Projetos de Poo
 
-## Base
+## 1. Base
 
-### - Conta Bancária
-[![](/assets/01_conta/figura.png)](/poo/2017/04/04/01_conta.html)
-
----
-### - Contato telefônico
-[![](/assets/01_contato/figura.png)](/poo/2017/04/04/01_contato.html)
+### 1.1 Conta Bancária
+[![](/pages/01_conta/figura.png)](/pages/01_conta.html)
 
 ---
-### - Máquina de Junk Food
-[![](/assets/01_junkfood/figura.png)](/poo/2017/04/04/01_junkfood.html)
+### 1.2 Contato telefônico
+[![](/pages/01_contato/figura.png)](/pages/01_contato.html)
 
 ---
-## Composição
-### - Serviço de Anotações
-[![](/assets/02_anotacoes/figura.png)](/poo/2017/04/04/02_anotacoes.html)
+### 1.3 Agiotagem Financeira
+[![](/pages/01_agiota/figura.png)](/pages/01_agiota.html)
+
+---
+### 1.4 Máquina de Junk Food
+[![](/pages/01_junkfood/figura.png)](/pages/01_junkfood.html)
+
+---
+## 2. Composição
+
+### 2.1 Serviço de Anotações
+[![](/pages/02_anotacoes/figura.png)](/pages/02_anotacoes.html)

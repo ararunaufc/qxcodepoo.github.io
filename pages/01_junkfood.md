@@ -1,16 +1,16 @@
 ---
-layout: post
+layout: page
 title:  "JunkFood Machine"
-date:   2017-04-04 16:16:01 -0600
 categories: poo
+exclude: true
 ---
 ## Máquina de Vender JunkFood
 
-![Máquina de vender](/assets/01_junkfood/figura.png)
+![Máquina de vender](/pages/01_junkfood/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por uma máquina de vender JunkFood. Na máquina existem várias espirais. Uma espiral contém uma certa quantidade de produtos do mesmo tipo e mesmo preço. O usuário coloca o dinheiro, compra o produto e recebe o troco.
 
-[**Execute o projeto**](/assets/01_junkfood/code/pagina.html)
+[**Execute o projeto**](/pages/01_junkfood/code/pagina.html)
 
 ## Funcionalidades
 
@@ -149,4 +149,4 @@ public:
 
 
 ## Diagrama
-![](/assets/01_junkfood/diagrama.png)
+![](/pages/01_junkfood/diagrama.png)

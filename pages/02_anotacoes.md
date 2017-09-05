@@ -1,20 +1,20 @@
 ---
-layout: post
+layout: page
 title:  "Serviço de Anotações"
-date:   2017-04-04 16:16:01 -0600
 categories: poo
+exclude: true
 ---
 
 # Serviço de Anotações
 
-![](/assets/02_anotacoes/figura.png)
+![](/pages/02_anotacoes/figura.png)
 
 O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema
 terá vários usuários que vão logar utilizando login e senha. Cada usuário pode
 armazenar notas de texto contendo título e texto.
 
 ## Vídeo Explicativo
-[![Vídeo explicativo](/assets/02_anotacoes/shot.png)](https://youtu.be/ggOdp0Eh7fc "Vídeo explicando o módulo")
+[![Vídeo explicativo](/pages/02_anotacoes/shot.png)](https://youtu.be/ggOdp0Eh7fc "Vídeo explicando o módulo")
 
 ## Funcionalidades
 
@@ -118,4 +118,4 @@ $titulo2 $texto2
 ```
 
 # Diagrama
-![](/assets/02_anotacoes/diagrama.png)
+![](/pages/02_anotacoes/diagrama.png)
