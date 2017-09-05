@@ -14,7 +14,8 @@ terá vários usuários que vão logar utilizando login e senha. Cada usuário p
 armazenar notas de texto contendo título e texto.
 
 ## Vídeo Explicativo
-[![Vídeo explicativo](/pages/02_anotacoes/shot.png)](https://youtu.be/ggOdp0Eh7fc "Vídeo explicando o módulo")
+
+<iframe width="320" height="180" src="https://www.youtube.com/embed/ggOdp0Eh7fc" frameborder="0" allowfullscreen></iframe>
 
 ## Funcionalidades
 
