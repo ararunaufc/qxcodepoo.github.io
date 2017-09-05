@@ -6,7 +6,7 @@ exclude: true
 ---
 # Agiota gente Fina
 
-![](/assets/01_agiota/figura.png)
+![](/pages/01_agiota/figura.png)
 
 Seu Plutolomeu é um agiota que empresta dinheiro a juros 0. Ele é uma pessoa muito carismática e amiga de todos. De sorriso largo sempre aberto, Plutolomeu é amigo da vizinhança. Inclusive esse ano, ele ganhou uma festa de aniversário surpresa de todos os seus devedores. Só quem é gente muito fina ganha festa surpresa né?
 
@@ -109,7 +109,7 @@ Existem $qtd clientes diferentes no sistema.
 ## Diagrama
 - Gets, Sets e toString omitidos.
 
-![](/assets/01_agiota/diagrama.png)
+![](/pages/01_agiota/diagrama.png)
 
 
 ## Fim da história
@@ -117,4 +117,4 @@ Existem $qtd clientes diferentes no sistema.
 - Então assim ficou Ptolomeu, depois de conseguir explicar pra polícia que tudo não passou me um mal entendido. 
     - *Essa explicação custou 20.000 reais*, mas isso é detalhe, ninguém comenta.
 
-![](/assets/01_agiota/ptolomeu.png)
+![](/pages/01_agiota/ptolomeu.png)
