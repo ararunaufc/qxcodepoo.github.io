@@ -26,5 +26,9 @@ layout: page
 ---
 ## 2. Composição
 
+### 2.1 Serviço de Segredos
+[![](/pages/02_segredos/figura.png)](/pages/02_segredos.html)
+
+
 ### 2.1 Serviço de Anotações
 [![](/pages/02_anotacoes/figura.png)](/pages/02_anotacoes.html)
