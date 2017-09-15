@@ -29,7 +29,7 @@ erro | username já existe
 ```
 ---
 
-- **[1.0 P]** Mostrar os usuários do sistema.
+- **[1.0 P]** Mostrar os usernames cadastrados no sistema.
 
 ```
 >> showUsers
