@@ -1,1 +1,1 @@
-/home/light/Dropbox/poo/git_poo_codigos/02_segredos/main.js
+/home/light/Dropbox/poo/git_poo_codigos/01_conta/typescript/main.js
