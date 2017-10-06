@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>424</x>
+      <y>256</y>
+      <w>288</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>*Trem*
+bg=yellow
+--
+- maxVagoes: number
+- vagoes: Array&lt;Vagao&gt;
+--
++ constructor(maxVagoes: number)
++ addVagao(vagao: Vagao): boolean
+
++ embarcar(pass: Passageiro): boolean
++ desembarcar(cpf: string): Passageiro
++ search(cpf: string): Passageiro
+
++ getLotacao(): number
++ getCapacidade(): number
+
++ toString(): string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>136</x>
+      <y>8</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>*Passageiro*
+bg=yellow
+--
+- cpf: string
+--
++ constructor(cpf: string)
++ get cpf(): string
++ toString(): string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>424</x>
+      <y>0</y>
+      <w>288</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>*Vagao*
+bg=yellow
+--
+- cadeiras: Array&lt;Passageiro&gt;
+- capacidade: number
+--
++ constructor(capacidade)
++ embarcar(pass: Passageiro): boolean
++ desembarcar(cpf: string): Passageiro
++ search(cpf: string): Passageiro
+
++ getLotacao(): number
++ getCapacidade(): number
+
++ toString(): string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>160</y>
+      <w>288</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>*RegistroPassageiros*
+bg=yellow
+--
+- passageiros: Array&lt;Passageiros&gt;
+--
++ constructor()
++ addPass(pass: Passageiro): boolean
++ getAllPass(): Array&lt;Passageiro&gt;
++ toString(): string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>48</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>208</x>
+      <y>96</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>184</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>360</y>
+      <w>288</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>*Controller*
+bg=yellow
+--
+- trem: Trem
+- registro: RegistroPassageiros
+--
++ constructor()
++ commandLine(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

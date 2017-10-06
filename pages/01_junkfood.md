@@ -4,17 +4,18 @@ title:  "JunkFood Machine"
 categories: poo
 exclude: true
 ---
-## Máquina de Vender JunkFood
 
-![Máquina de vender](/pages/01_junkfood/figura.png)
+![](/assets/01_junkfood/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por uma máquina de vender JunkFood. Na máquina existem várias espirais. Uma espiral contém uma certa quantidade de produtos do mesmo tipo e mesmo preço. O usuário coloca o dinheiro, compra o produto e recebe o troco.
 
-[**Execute o projeto**](/pages/01_junkfood/code/pagina.html)
+
+## Execute online
+[![](/assets/images/run.png)](/assets/01_junkfood/run.html)
 
 ## Funcionalidades
 
-Essa classe deverá ser capaz de:
+Seu sistema deverá ser capaz de:
 
 * **[1.0 P]** Receber dinheiro do usuário.
 
@@ -90,7 +91,7 @@ ind 1: nome: $nome, qtd: $qtd, valor: $value
 * **[1.0 P]** Faça um código de inicialização para o sistema já iniciar com alguns produtos nas espirais.
 
 
-## Dica
+## Orientações
 
 - Faça primeiro a classe Espiral. Garanta que existe um construtor default seja sem parâmetros ou com todos os parametros com valores default.
 - No contrutor da class Maquina receba a quantidade de espirais. Para iniciar o vetor de espirais você pode fazer um laço inserindo qtd Espirais no vetor.
@@ -148,5 +149,6 @@ public:
 ```
 
 
-## Diagrama
-![](/pages/01_junkfood/diagrama.png)
+## Diagrama de Classes
+
+![](/assets/01_junkfood/diagrama.png)

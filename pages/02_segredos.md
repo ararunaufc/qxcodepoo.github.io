@@ -5,9 +5,7 @@ categories: poo
 exclude: true
 ---
 
-# Serviço de Segredos
-
-![](/pages/02_segredos/figura.png)
+![](/assets/02_segredos/figura.png)
 
 Lindobergue tinha um "amor" "apaixonado" por Veridiana. Depois de levar o fora incontáveis vezes sem nenhuma explicação, ele começou a desconfiar que Veridiana guardava um terrível segredo.
 
@@ -21,7 +19,7 @@ A última parte do plano era inventar um tal de Spotted VSF Quixadá, para poder
 
 ---
 
-![](/pages/02_segredos/figura2.png)
+![](/assets/02_segredos/figura2.png)
 
 O objetivo dessa atividade é criar um pequeno serviço de guardar segredos de Lindoberg. O sistema terá vários usuários que vão logar utilizando login e senha. Cada usuário pode armazenar um único segredo. As senhas podem ser verificadas ou alteradas, nunca obtidas.
 
@@ -37,8 +35,8 @@ O objetivo da ativade é trabalhar:
 
 O usuário se cadastra com login e senha. Depois de logado ele pode alterar senha e registrar seu segredo. O usuario só pode ver ser próprio segredo. O Administrador pode ver o segredo de todos.
 
-## Execute o projeto
-[![](/pages/images/run.png)](/pages/02_segredos/code/pagina.html)
+## Execute Online
+[![](/assets/images/run.png)](/assets/02_segredos/code/pagina.html)
 
 ## Funcionalidades
 O sistema deve:
@@ -51,7 +49,7 @@ O sistema deve:
 >> iniciar
 sistema iniciado
 ```
-
+---
 - **[1.0 P]** Criar usuário passando username e password.
     - _usernames devem ser únicos no sistema.
 
@@ -80,6 +78,7 @@ erro | nenhum usuário logado
 - **[1.0 P]** Mostrar os usuários do sistema.
     - Mostre os usuário ordenados por nome.
     - Qualquer usuário pode ver os usuários do sistema
+
 ```
 >> showUsernames
 $username1
@@ -115,6 +114,7 @@ erro | ninguém logado
     - O texto pode conter várias palavras e não pode ser vazio.
     - Cada usuário tem um único segredo.
     - O usuário admin também pode ter um segredo.
+
 ```
 >> setSegredo _nivel _segredo
 ok
@@ -138,6 +138,7 @@ erro | ninguem logado
     - Só o admin pode rodar esse comando.
     - Mostre ordenado por nível, ou seja, os usuários com
     segredos mais terríveis aparecem primeiro.
+
 ```
 >> showAll
 Nome: _username [_nivel _segredo]
@@ -161,7 +162,7 @@ usuario _username sortedo
 
 ---
 
-## Resumo dos pontos
+## Pontuação
 
 ```
 [ ][1.0 P] iniciar
@@ -179,7 +180,7 @@ usuario _username sortedo
 [ ]     Total pontos
 ```
 
-# Dicas
+## Orientações
 
 - No construtor da classe Segredo o único parâmetro será o texto.
 - Na classe Segredo, faça o setNivel só aceitar valores válidos entre 1 e 10.
@@ -189,8 +190,8 @@ usuario _username sortedo
 - No setNivel e setTexto de segredo, valide os parâmetros. Se o nível estiver fora dos limite, mude para o mínimo. Se o texto estiver vazio, coloque como "Escreva o seu segredo".
 
 
-# Diagrama
+## Diagrama de Classes
 
 No diagrama são omitidos construtores, métodos get e set e toString(). Crie os gets, sets dos atributos e toString das classes.
 
-![](/pages/02_segredos/diagrama.png)
+![](/assets/02_segredos/diagrama.png)

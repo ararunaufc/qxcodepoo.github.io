@@ -5,9 +5,7 @@ categories: poo
 exclude: true
 ---
 
-# Serviço de Anotações
-
-![](/pages/02_anotacoes/figura.png)
+![](/assets/02_anotacoes/figura.png)
 
 O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema
 terá vários usuários que vão logar utilizando login e senha. Cada usuário pode
@@ -100,7 +98,7 @@ $titulo2 $texto2
 
 ---
 
-## Resumo dos pontos
+## Pontuação
 
 ```
 [ ][1.0 P] addUser
@@ -118,5 +116,5 @@ $titulo2 $texto2
 [ ]        Total Extras
 ```
 
-# Diagrama
-![](/pages/02_anotacoes/diagrama.png)
+# Diagrama de Classes
+![](/assets/02_anotacoes/diagrama.png)

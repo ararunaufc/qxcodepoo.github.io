@@ -5,14 +5,14 @@ categories: poo
 exclude: true
 ---
 
-# Contato Telefônico
-![](/pages/01_contato/figura.png)
+![](/assets/01_contato/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por guardar um **único** contato da agenda telefônica do seu celular. Cada contato pode ter vários telefones e email.
 
-[**Execute o projeto**](/pages/01_contato/code/pagina.html)
+## Execute online
+[![](/assets/images/run.png)](/assets/01_contato/run.html)
 
-## Requisitos de contatos
+## Funcionalidades
 Seu sistema deverá:
 
 - **[1.0 P]** Iniciar contato com o nome. Se já haver um contato, apague as informações.
@@ -70,12 +70,12 @@ $foneid $number
 ---
 - **[1.0 P]** Inicie seu sistema com um contato iniciado e alguns telefones inseridos.
 
-## Atividade
+## Orientações
 
 - Implemente a classe contato com as adaptações que julgar necessárias.
 - Crie a interface com o usuário que permita interagir com a classe Contato.
 
-## Diagrama UML
+## Diagrama de Classes
 Métodos como gets, sets, show e toString() omitidos. Crie-os onde julgar necessários.
 
-![](/pages/01_contato/diagrama.png)
+![](/assets/01_contato/diagrama.png)

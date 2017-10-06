@@ -5,12 +5,12 @@ categories: poo
 exclude: true
 ---
 
-## Conta Bancária
-![](/pages/01_conta/figura.png)
+![](/assets/01_conta/figura.png)
 
 O objetivo dessa atividade é implementar uma classe responsável por gerenciar a conta bancária de um único cliente. Faremos operações de saque, depósito e extrato.
 
-[**Execute o projeto**](/pages/01_conta/code/pagina.html)
+## Execute online
+[![](/assets/images/run.png)](/assets/01_conta/run.html)
 
 ## Funcionalidades
 
@@ -77,4 +77,4 @@ $descricao3 $valor3 $saldo3
 
 O diagrama é uma **sugestão** de métodos e parâmetros. Sinta-se livre para alterar conforme sua necessidade. Os métodos gets e sets são omitidos em diagramas de classes.
 
-![](/pages/01_conta/diagrama.png)
+![](/assets/01_conta/diagrama.png)
