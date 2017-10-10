@@ -5,7 +5,7 @@ categories: poo
 exclude: true
 ---
 
-![](/assets/02_banco/imagem.png)
+![](/assets/02_banco/figura.png)
 
 O objetivo dessa atividade é implementar uma agência bancária simplificada. Deve ser capaz de cadastrar cliente. Cada cliente pode ter várias contas. Uma conta não pode existir se não estiver viculada a um cliente.
 
@@ -15,29 +15,26 @@ Expanda a atividade nível 1 Conta Bancária e adicione os novos requisitos.
 
 ### Ações Administrativas
 
-- **[1.0 P]** Cadastrar um cliente com cpf.
-    - CPFs devem ser únicos no sistema.
+- **[1.0 P]** Cadastrar um cliente com idCliente.
+    - idClientes devem ser únicos no sistema.
+    - Quando o cliente é cadastrado no sistema, automaticamente é aberta uma conta
 
 ```
->> addCli $cpf
-Cliente adicionado
-------
-erro | cpf duplicado
+addCliente _idCliente
+  done: conta _idConta adicionada ao cliente
 ```
 
 ---
-- **[1.0 P]** Abrir contas para clientes.
+- **[1.0 P]** Abrir novas contas para clientes.
     - Cada conta deve receber do sistema um número único no sistema.
     - Quando o cliente é cadastrado no sistema, automaticamente é aberta uma conta
   para ele.
     - **[1.0 E]** Cada cliente pode ter até 2 contas ativas.
 
 ```
->> abrirConta $cpf
-conta $conta aberta
-------
-erro | cpf não existe
-erro | limite de contas atingido
+abrirConta _idCliente
+  done: conta _idConta adicionada ao cliente
+  fail: limite de contas atingido
 ```
 
 ---
@@ -46,12 +43,10 @@ erro | limite de contas atingido
     - Contas só podem ser desabilitadas se tiverem com saldo zerado.
 
 ```
->> encerrarConta $conta
-ok   | conta $conta encerrada
-------
-erro | conta invalida
-erro | conta ja esta encerrada
-erro | saldo positivo
+encerrarConta _idCliente _idConta
+  done
+  fail: conta _idConta ja esta encerrada
+  fail: conta _idConta possui saldo positivo
 ```
 
 ---
@@ -62,10 +57,10 @@ erro | saldo positivo
     - **[1.0 E]** Mostre ordenado por nome do cliente.
 
 ```
->> showAllCli
-1 - $cpf [$conta1 ...]
-2 - $cpf [$conta1 $conta2 ...]
-...
+showAll
+  _idCliente1 [ _idConta1 ... ]
+  _idCliente2 [ _idConta1 _idConta2 ... ]
+  ...
 ```
 
 ---
@@ -74,19 +69,15 @@ erro | saldo positivo
 - Login:
 
 ```
->> login $cpf
-ok
-------
-erro | cpf invalido
+login _idCliente
+  done
 ```
 
 - Logout:
 
 ```
->> logout
-ok
-------
-erro | nenhum cliente logado
+logout
+  done
 ```
 
 ---
@@ -95,28 +86,31 @@ erro | nenhum cliente logado
     - Se não tiver implementado encerrar conta, não mostre o status(ativa/inativa).
 
 ```
->> show
-Cliente: $cpf
-Conta: $conta1, Saldo: $saldo1, Status: $ativa1
-Conta: $conta2, Saldo: $saldo2, Status: $ativa2
-...
-Saldo total: $value
-------
-erro | cliente não logado
+show
+  Cliente: _idCliente
+  Conta: _idConta, Saldo: _saldo, Status: _status
+  Conta: _idConta, Saldo: _saldo, Status: _status
+  ...
+  Saldo total: _total
 ```
 
 ---
-- **[1.0 P]** Realizar operações de saldo, saque, depósito e extrato, tal como foi
-implementado no primeiro trabalho.
+- **[1.0 P]** Realizar operações de saldo, saque, depósito e extrato, tal como foi implementado no primeiro trabalho.
      - Cliente só pode fazer operações em suas próprias contas.
      - Cliente precisa estar logado.
 
 ```
->> saldo $conta
->> saque $conta $valor
->> deposito $conta $valor
->> extrato $conta
->> extratoN $conta $qtd
+saldo _idConta
+  done: Conta _idConta saldo: _saldo
+saque _idConta _valor
+  done
+deposito _idConta _valor
+  done
+extrato _idConta
+  Conta _idConta
+  desc: _descricao, value: _value, saldo: _saldoResidual
+  desc: _descricao, value: _value, saldo: _saldoResidual
+  ...
 ```
 
 ---
@@ -126,17 +120,57 @@ implementado no primeiro trabalho.
     - Cliente precisa estar logado e possuir a conta de débito.
 
 ```
->> transf $contaDe $contaPara
-ok   | efetuado
-------
-erro | numero conta $conta invalido
-erro | saldo insuficiente
-erro | cliente nao logado
+transf _idConta _idContaDestino _valor
+  done
 ```
 
 ---
-- **[1.0 P]** Faça um código de inicialização para que seu sistema já inicie com
-alguns clientes, contas e operações realizadas.
+- **[1.0 P]** Faça um código de inicialização para que seu sistema já inicie com alguns clientes, contas e operações realizadas.
+
+### Mensagens de erro comuns
+
+- Faça as devidas verificações e emita o aviso caso alguma das operações inválida tente ser executada.
+
+```
+Adicionar outro cliente com mesmo id
+  fail: cliente _idCliente ja existe
+Obter um cliente que nao existe
+  fail: cliente _idCliente nao existe
+
+Adicionar outra conta com mesmo id
+  fail: conta _idConta ja existe
+Obter uma conta que nao existe ou não pertence ao cliente
+  fail: conta _idConta nao existe
+Realizar operação em conta encerrada
+  fail: conta _idConta esta encerrada
+
+Realizar uma operação que exige estar logado sem estar logado
+  fail: ninguem logado
+Realizar saque ou transferencia sem ter dinheiro suficiente
+  fail: saldo insuficiente
+```
+
+### Lista de Comandos
+
+```
+# Admin
+addCliente    _idCliente
+abrirConta    _idCliente
+encerrarConta _idCliente _idConta
+showAll
+
+# Login e logout
+login    _idCliente
+logout
+
+# Exige login
+show
+saldo    _idConta
+extrato  _idConta
+saque    _idConta _valor
+deposito _idConta _valor
+transf   _idConta _idContaDestino _valor
+```
 
 ## Pontuação
 

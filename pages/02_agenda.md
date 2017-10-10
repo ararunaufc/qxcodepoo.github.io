@@ -28,106 +28,154 @@ O objetivo da ativade é trabalhar:
 
 O sistema deverá:
 
-- **[1.0 P]** Adicionar contatos usando um nome
-    - Não deve ser possível adicionar dois contatos com o mesmo nome.
+- Adicionar contatos usando um idContato que pode ser nome ou cpf
+    - Não deve ser possível adicionar dois contatos com o mesmo idContato.
 
 ```
->> addContato $nome
-contato adicionado
-------
-erro | contato já existe
+addContato _idContato
+  done
 ```
 
 ---
-- **[1.0 P]** Remover um contatos pelo nome.
+- Remover um contatos pelo idContato.
 
 ```
->> rmContato $nome
-contato removido
-------
-erro | contato não existe
+rmContato _idContato
+  done
 ```
 ---
-- **[1.0 P]** Adicionar telefones ao contato.
-    - Um telefone tem um foneid e um numero.
-    - foneid serão nomes como: casa, fixo, oi.
-    - **[1.0 E]** Não aceite dois telefones com o mesmo foneid.
-    - **[1.0 E]** Verifique se o número contém apenas dígitos ou os caracteres "()-".
+- Adicionar telefones ao contato.
+    - Um telefone tem um idFone e um numero.
+    - idFone serão nomes como: casa, fixo, oi.
+    - Não aceite dois telefones com o mesmo idFone.
+    - Verifique se o número contém apenas os seguintes caracteres "0123456789 ().-".
 
 ```
->> addFone $nome $foneid $number 
-ok
-------
-erro | nome não existe
-erro | foneid já existe nesse $nome
-erro | numero inválido
-
+addFone _idContato _idFone _number 
+  done
+  fail: numero invalido
 ```
 
 ---
-- **[1.0 P]** Remover telefones do contato pelo foneid.
+- Remover telefones do contato pelo idFone.
 
 ```
->> rmFone $nome $foneid
-ok
-------
-erro | $nome nao existe
-erro | $foneid não existe
+rmFone _idContato _idFone
+  done
 ```
 
 ---
-- **[1.0 P]** Mostrar todos os contatos.
-    - **[1.0 E]** Ordenar os contatos pelo nome.
-    - Marque os contatos que são favoritados com um @ antes do nome. Se o contato não for favorito use - antes do nome.
+- Importar contato passando vários dados.
 
 ```
->> showContatos
-- $nome1 [$foneid $number][$foneid $number]
-@ $nome2 [$foneid $number][$foneid $number] ...
+loadContato _idContato _qtdFones _idFone1 _number1 _idfone2 _number2 ...
+  done
+```
+
+---
+- Mostrar um contato.
+    - Marque os contatos que são favoritados com um @ antes do idContato. Se o contato não for favorito use - antes do idContato.
+    - Coloque todos os telefones em ordem
+
+```
+show _idContato
+  - _idContato [_idFone _number][_idFone _number]...
+  ou
+  @ _idContato [_idFone _number][_idFone _number]...
+```     
+
+
+---
+- Mostrar todos os contatos.
+    - Ordenar os contatos pelo idContato com os contatos favoritos primeiro.
+
+```
+showAll
+  @ _idContato1 [_idFone _number][_idFone _number]
+  - _idContato2 [_idFone _number][_idFone _number] ...
 ```     
 
 ---
-- **[2.0 P]** Buscar contatos por substring.
-    - Se o contato tiver qualquer campo que combine com a string pattern de busca, ele deve ser retornado.
+- Buscar contatos por substring.
+    - Se o contato tiver qualquer campo que combine com a string pattern de busca, ele deve ser retornado. Se o pattern é maria, devem ser retornados os contatos como "maria julia", "mariana", "ana maria", etc. Se o pattern combinar com qualquer campo do contato, ele deve fazer parte do retorno.
+    - Mostre ordenado pelo idContato com os contatos favoritos primeiro
 
 ```
->> search $pattern
-- $nome1 [$fone1 $desc1][$fone2 $desc2] ...
-...
+search _pattern
+  @ _idContato [_idFone _number][_idFone _number]
+  - _idContato [_idFone _number][_idFone _number] ...
+  ...
 ```
 
 ---
-- **[0.5 E]** Favoritar contatos.
+- Favoritar contatos.
 
 ```
->> fav $nome
-ok
-erro | $nome não encotrado
+fav _idContato
+  done
 ```
 
 - **[0.5 E]** Desfavoritar contatos.
 
 ```
->> desfav $nome
-ok
-erro | $nome não encontrado
-erro | $nome não é favorito
+desfav _idContato
+  done
 ```
 
 ---
-- **[1.0 E]** Mostrar favoritos.
+- **[1.0 E]** Mostrar favoritos ordenados pelo idContato.
 
 ```
->> showFav
-@ $nome1 [$fone1 $desc1][$fone2 $desc2] ...
-...
+showFav
+  @ _idContato [_idFone _number][_idFone _number] ...
+  @ _idContato [_idFone _number][_idFone _number] ...
+  ...
 ```
-
 
 ---
 - **[1.0 P]** Inicialize o sistema para que ele já inicie com alguns contatos e telefones.
 
+### Mensagens de erro comuns
 
+- Faça as devidas verificações e emita o aviso caso alguma das operações inválida tente ser executada.
+
+```
+Adicionar um outro contato com mesmo id
+  fail: contato _idContato ja existe
+Obter um contato que não existe
+  fail: contato _idContato nao existe
+Adicionar outro telefone com o mesmo id no contato
+  fail: fone _idFone ja existe
+Obter um telefone que não existe
+  fail: fone _idFone nao existe
+```
+
+---
+### Lista de Comandos
+
+```
+"  # crud de contatos                         \n"
+"  addContato _idContato                      \n"
+"  rmContato  _idContato                      \n"
+"                                             \n"
+"  # crud de telefone                         \n"
+"  addFone    _idContato _idFone _number      \n"
+"  rmFone     _idContato _idFone              \n"
+"                                             \n"
+"  # buscas e visualizações                   \n"
+"  show       _idContato                      \n"
+"  showAll                                    \n"
+"  search     _pattern                        \n"
+"                                             \n"
+"  # favoritos                                \n"
+"  fav        _idContato                      \n"
+"  desfav     _idContato                      \n"
+"  showFav                                    \n"
+"                                             \n"
+"  # default                                  \n"
+"  fim                                        \n"
+"  help                                       \n"
+```
 ---
 ## Pontuação
 
@@ -150,13 +198,25 @@ erro | $nome não é favorito
 
 
 ## Orientações
-- Na busca por padrão, faça a agenda perguntar para cada contato se ele bate com o padrão.
+- Na busca por padrão verifiqueo valor do padrão com o valor toString() to contato.
 - Crie métodos toString para todas as Classes.
-- Crie um método match para o contato que faz a busca sobre o resultado do método toString de Contato.
 - Quando remover um contato, verifique de removê-lo dos favoritos também.
+- Quando desfavoritar um contato, lembre de tanto remover da lista como alterar o valor do atributo favorited no próprio contato.
 
 ## Diagrama de Classes
 
 - Métodos Get, Set e toString omitidos.
 
 ![](/assets/02_agenda/diagrama.png)
+
+## Testes
+
+```
+
+showAll
+  @ davi [oi 123][tim 321]
+  @ rui [vivo 43]
+  - lex [casa 54]
+
+```
+
