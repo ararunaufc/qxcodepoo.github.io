@@ -11,10 +11,13 @@ Vamos implementar o modelo do twitter. Os usuários se cadastram e podem seguir 
 
 ## Habilidades
 
-Nessa atividade o mesmo objeto usuário estará armazenado no manager de usuários, como também nas listas de seguidores e seguidos do próprio usuário. Também o objeto twitter estará tanto na lista de minhasMensagens do usuário que postou como na timeline de seus seguidores. Dado que é o mesmo objeto mensagem, ao alterar seu twitter original, todos os seguidores verão a mensagem alterada. Cada objeto Twitter ganha um id único através de uma variável estática nextTwId na class User. Também User utiliza um contador de mensagem não lidas para mostrar apenas as novas mensagens.
+- Nessa atividade o mesmo objeto usuário estará armazenado no manager de usuários, como também nas listas de seguidores e seguidos do próprio usuário. 
+- Também o objeto twitter estará tanto na lista de minhasMensagens do usuário que postou como na timeline de seus seguidores. Dado que é o mesmo objeto mensagem, ao alterar seu twitter original, todos os seguidores verão a mensagem alterada. 
+- Cada objeto Twitter ganha um id único através de uma variável estática nextTwId na class User. 
+- Também User utiliza um contador de mensagem não lidas para mostrar apenas as novas mensagens.
 
 ## Funcionalidades
-- Parte 1
+- **[2.0 P]** Parte 1 
     - Adicionar usuário passando username.
     - Mostrar os usuários cadastrados.
 
@@ -26,7 +29,7 @@ showUsers
   [ goku luis tina ]
 ```
 ---
-- Parte 2
+- **[2.0 P]** Parte 2
     - Seguir um outro usuário cadastrado
     - Mostrar a lista de seguidores
     - Mostrar a lista de seguidos
@@ -43,7 +46,7 @@ seguidores goku
   [ ]
 ```
 ---
-- Parte 3
+- **[4.0 P]** Parte 3
     - twittar uma mensagem com várias palavras
     - mostrar a timeline
     - mostrar suas próprias mensagens
@@ -72,7 +75,7 @@ myMsgs sara
   0 sara: hoje estou triste
 ```
 ---
-- Parte 4
+- **[1.0 P]** Parte 4
   - Mostrar apenas as mensagens não lidas
   - Alterar o texto de uma mensagem que já foi twittada
 
@@ -94,7 +97,7 @@ unread sara
   unread sara
 ```
 ---
-- Parte 5
+- **[1.0 P]** Parte 5
     - Editar uma mensagem que já foi publicada
 
 ```
