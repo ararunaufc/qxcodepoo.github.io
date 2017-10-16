@@ -47,8 +47,8 @@ Se houver vídeo explicativo ele vai através do link embeebed do youtube. Escol
     - Apaga todos os registros de transações que existam.
 
 ```
->> iniciar $valor
-sistema iniciado com $valor
+>> iniciar _valor
+sistema iniciado com _valor
 ```
 
 ---
@@ -61,8 +61,8 @@ sistema iniciado com $valor
     - **[1.0 E]** Ptolomeu não pode emprestar dinheiro se não tiver dinheiro suficiente.
 
 ```
->> addTran $nome $valor
-ok | transacao $id adicionada
+>> addTran _nome _valor
+ok | transacao _id adicionada
 erro | não há dinheiro suficiente para empréstimo.
 ```
 
@@ -73,8 +73,8 @@ erro | não há dinheiro suficiente para empréstimo.
 ```
 >> showTran
 Lista de transações:
-$id $nome $valor
-$id $nome $valor
+_id _nome _valor
+_id _nome _valor
 ...
 ```
 
@@ -84,7 +84,7 @@ $id $nome $valor
     - Dado o id, apague a transação correspondente.
 
 ```
->> rmTran $id
+>> rmTran _id
 ok | transação removida
 erro | transação não encontrada
 ```
@@ -95,12 +95,12 @@ erro | transação não encontrada
     - Mostra o saldo do cliente no final
 
 ```
->> showCli $nome
-Lista de transações de $nome:
-$id $nome $valor
-$id $nome $valor
+>> showCli _nome
+Lista de transações de _nome:
+_id _nome _valor
+_id _nome _valor
 ...
-Saldo: $saldo
+Saldo: _saldo
 ```
 
 ---
@@ -109,7 +109,7 @@ Saldo: $saldo
 
 ```
 >> balanco
-Balanco: $balanco
+Balanco: _balanco
 ```
 
 ---
@@ -118,7 +118,7 @@ Balanco: $balanco
 
 ```
 >> contarCli
-Existem $qtd clientes diferentes no sistema.
+Existem _qtd clientes diferentes no sistema.
 ```
 
 ---

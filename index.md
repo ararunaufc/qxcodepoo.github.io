@@ -68,3 +68,7 @@ layout: page
 ### 3.2 Trem - Alocações de Passageiros
 
 [![](/assets/03_trem/figura.png)](/pages/03_trem.html)
+
+### 3.2 Twitter
+
+[![](/assets/03_twitter/figura.png)](/pages/03_twitter.html)
