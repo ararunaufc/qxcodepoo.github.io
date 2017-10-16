@@ -17,7 +17,7 @@ Vamos implementar o modelo do twitter. Os usuários se cadastram e podem seguir 
 - Também User utiliza um contador de mensagem não lidas para mostrar apenas as novas mensagens.
 
 ## Funcionalidades
-- **[2.0 P]** Parte 1 
+- **[2.0 P] Parte 1**
     - Adicionar usuário passando username.
     - Mostrar os usuários cadastrados.
 
@@ -29,13 +29,13 @@ showUsers
   [ goku luis tina ]
 ```
 ---
-- **[2.0 P]** Parte 2
+- **[2.0 P] Parte 2**
     - Seguir um outro usuário cadastrado
     - Mostrar a lista de seguidores
     - Mostrar a lista de seguidos
 
 ```
-seguir goku luis
+seguir goku sara
 seguir goku tina
 seguir sara tina
 seguidos goku
@@ -46,7 +46,7 @@ seguidores goku
   [ ]
 ```
 ---
-- **[4.0 P]** Parte 3
+- **[4.0 P] Parte 3**
     - twittar uma mensagem com várias palavras
     - mostrar a timeline
     - mostrar suas próprias mensagens
@@ -75,7 +75,7 @@ myMsgs sara
   0 sara: hoje estou triste
 ```
 ---
-- **[1.0 P]** Parte 4
+- **[1.0 P] Parte 4**
   - Mostrar apenas as mensagens não lidas
   - Alterar o texto de uma mensagem que já foi twittada
 
@@ -97,7 +97,7 @@ unread sara
   unread sara
 ```
 ---
-- **[1.0 P]** Parte 5
+- **[1.0 P] Parte 5**
     - Editar uma mensagem que já foi publicada
 
 ```
@@ -133,3 +133,160 @@ timeline sara
 - Gets, Sets e toString omitidos.
 
 ![](/assets/03_twitter/diagrama.png)
+
+## IO para Testes
+
+```
+addUser goku
+addUser sara
+addUser tina
+showUsers
+  [ goku sara tina ]
+
+
+seguir goku sara
+seguir goku tina
+seguir sara tina
+seguidos goku
+  [ sara tina ]
+seguidores tina
+  [ goku sara ]
+seguidores goku
+  [ ]
+
+twittar sara hoje estou triste
+twittar tina ganhei chocolate
+twittar sara partiu ru!
+twittar tina chocolate
+
+timeline goku
+  timeline goku
+  3 tina: chocolate ruim
+  2 sara: partiu ru!
+  1 tina: ganhei chocolate
+  0 sara: hoje estou triste
+
+timeline sara
+  timeline sara
+  3 tina: chocolate ruim
+  1 tina: ganhei chocolate
+  
+unread sara
+  unread sara
+
+twittar tina eu
+twittar tina amo
+twittar tina chocolate
+
+unread sara
+  unread sara
+  6 tina: chocolate
+  5 tina: amo
+  4 tina: eu
+
+unread sara
+  unread sara
+
+timeline sara
+  timeline sara
+  6 tina: chocolate
+  5 tina: amo
+  4 tina: eu
+  3 tina: chocolate ruim
+  1 tina: ganhei chocolate
+
+myMsgs tina
+  myMsgs tina
+  6 tina: chocolate
+  5 tina: amo
+  4 tina: eu
+  3 tina: chocolate ruim
+  1 tina: ganhei chocolate
+
+editar tina 5 odeio muito
+
+timeline sara
+  timeline sara
+  6 tina: chocolate
+  5 tina: odeio muito
+  4 tina: eu
+  3 tina: chocolate ruim
+  1 tina: ganhei chocolate
+```
+
+### Controller pra economizar tempo
+
+Adapte como preferir.
+
+```typescript
+
+let HELP = `
+help
+showUsers
+addUser    _nome
+follow     _nome _outro
+twittar    _nome     _(mensagem com varias palavras)
+editar     _nome _id _(mensagem com varias palavras)
+seguidores _nome
+seguidos   _nome
+timeline   _nome
+myMsgs     _nome
+unread     _nome
+`;
+
+class Controller{
+    manager: Manager<User>;
+    constructor(){
+        this.manager = new Manager<User>("usuario");
+    }
+
+    process(line: string): string {
+        let ui = line.split(" ");
+        let cmd = ui[0];
+
+        if(cmd == "help")
+            return HELP;
+        else if(cmd == "addUser")
+            this.manager.add(ui[1], new User(ui[1]));
+        else if(cmd == "showUsers")
+            return poo.vet2str("Usuarios\n[ ", this.manager.getKeys(), " ") + "]";
+        else if(cmd == "seguir")
+            this.manager.get(ui[1]).seguir(this.manager.get(ui[2]));
+        else if(cmd == "twittar")
+            this.manager.get(ui[1]).twittar(ui.slice(2).join(" "));
+        else if(cmd == "seguidores")
+            return poo.vet2str("[ ", this.manager.get(ui[1]).seguidores, " ") + "]";
+        else if(cmd == "seguidos")
+            return poo.vet2str("[ ", this.manager.get(ui[1]).seguidos, " ") + "]";
+        else if(cmd == "timeline")
+            return poo.vet2str("Timeline\n  ", this.manager.get(ui[1]).timeline, "\n  ");
+        else if(cmd == "unread")
+            return poo.vet2str("Timeline\n  ", this.manager.get(ui[1]).unread, "\n  ");
+        else if(cmd == "myMsgs")
+            return poo.vet2str("MyMsgs\n  ", this.manager.get(ui[1]).myMsgs, "\n  ");
+        else if(cmd == "editar")
+            this.manager.get(ui[1]).editar(Number(ui[2]), ui.slice(3).join(" "));
+        else
+            return "comando invalido";
+        return "done";
+    }
+    
+    commandLine(){
+        let line = "";
+        while(line != "fim"){
+            line = poo.cin(">> ");
+            if((line == "") || (line.substr(0, 2) == "  "))
+                continue;
+            poo.cout(line);
+            try {
+                poo.cout(this.process(line));
+            }catch(e){
+                poo.cout("" + e.message)
+            }
+        }
+    }
+}
+
+let c = new Controller();
+c.commandLine();
+```
