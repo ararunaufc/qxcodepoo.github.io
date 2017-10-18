@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <help_text>// Uncomment the following line to change the fontsize and font:
-fontsize=10
-// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+fontsize=12
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,50 +29,58 @@ fontsize=10
     <id>UMLClass</id>
     <coordinates>
       <x>50</x>
-      <y>290</y>
-      <w>330</w>
-      <h>200</h>
+      <y>300</y>
+      <w>470</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>**Sistema**
 bg=yellow
 --
-- nextId : int
-- transacoes : List&lt;Transacao&gt;
-- balanco : float
+- nextTrId: int
+- transacoes: List&lt;Transacao&gt;
+- saldo: float
 --
-+ addTran(nome : String, valor : float) : void
-+ rmTran(id) : boolean
-+ mostrar() : void
-+ mostrarCliente(nome : string) : void
-+ contarClientes() : int
-+ fazerBalanco() : float</panel_attributes>
++ emprestar(idCliente: String, valor: float): void
++ receber(idCliente: String, valor: float): void
++ rmTran(idTr: int): void
++ showAll(): void
++ showCliente(idCliente : string) : void
++ saldoCliente(idCliente: String) : void
++ contarClientes(): int
+--
+constructor(saldoInicial: float)
+get transacoes, saldo
+toString</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>160</y>
-      <w>140</w>
-      <h>80</h>
+      <x>50</x>
+      <y>120</y>
+      <w>290</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>**Transacao**
 bg=yellow
 --
-+ id : int
-+ cliente : String
-+ valor : float</panel_attributes>
++ idTr : int
++ idCliente : String
++ valor : float
+--
+constructor(idTr, idCliente, valor)
+toString()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>190</x>
-      <y>230</y>
+      <x>180</x>
+      <y>220</y>
       <w>30</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
