@@ -1,74 +1,47 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: page
+layout: main
 ---
-# Projetos de Poo
 
-## Overview
-![](/assets/00_overview/trabalhos.png)
-
-## Projeto Modelo
-[![](/assets/00_modelo/figura.png)](/pages/00_modelo.html)
-
----
-# -
-## 1. Base 
-# -
-
-### 1.1 Conta Bancária
-[![](/assets/01_conta/figura.png)](/pages/01_conta.html)
-- Construtor
-- Métodos
-- Uso de listas(ArrayList, Vector, Array)
-
----
-### 1.2 Contato telefônico
-[![](/assets/01_contato/figura.png)](/pages/01_contato.html)
-- Composição: contato tem vários telefones.
-- Crud: A classe contato adiciona e remove telefones.
-
----
-### 1.3 Agiotagem Financeira
-[![](/assets/01_agiota/figura.png)](/pages/01_agiota.html)
-
----
-### 1.4 Máquina de Junk Food
-[![](/assets/01_junkfood/figura.png)](/pages/01_junkfood.html)
-
----
-# -
-## 2. Composição
-# -
-
-### 2.1 Serviço de Segredos
-[![](/assets/02_segredos/figura.png)](/pages/02_segredos.html)
-
-### 2.2 Serviço de Anotações
-[![](/assets/02_anotacoes/figura.png)](/pages/02_anotacoes.html)
-
-### 2.3 Agenda Telefônica
-
-[![](/assets/02_agenda/figura.png)](/pages/02_agenda.html)
-
-### 2.4 Agência Bancaria
-
-[![](/assets/02_banco/figura.png)](/pages/02_banco.html)
-
----
-# -
-##  3. Agregação
-# -
-
-### 3.1 Ligações
-
-[![](/assets/03_ligacoes/figura.png)](/pages/03_ligacoes.html)
-
-### 3.2 Trem - Alocações de Passageiros
-
-[![](/assets/03_trem/figura.png)](/pages/03_trem.html)
-
-### 3.3 Twitter
-
-[![](/assets/03_twitter/figura.png)](/pages/03_twitter.html)
+<main class="home" id="post" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+    <div id="grid" class="row flex-grid">
+    {% for post in site.posts reversed %}
+        <article class="box-item" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+            <span class="category">
+                <a href="{{ site.url }}{{ site.baseurl }}/categoria/{{ post.category }}">
+                    <span>{{ post.category }}</span>
+                </a>
+            </span>
+            <div class="box-body">
+                {% if post.image %}
+                    <div class="cover">
+                        <a href="{{ post.url | prepend: site.baseurl }}" {%if isnewpost %}class="new-post"{% endif %}>
+                            <img src="assets/img/placeholder.png" data-url="{{ post.image }}" class="preload">
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="box-info">
+                    <!--
+                    <meta itemprop="datePublished" content="{{ post.date | date_to_xmlschema }}">
+                    <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}" class="date">
+                        {% include date.html date=post.date %}
+                    </time>
+                    //-->
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+                        <h2 class="post-title" itemprop="name">
+                            {{ post.title }}
+                        </h2>
+                    </a>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+                        <p class="description">{{ post.introduction }}</p>
+                    </a>
+                    <div class="tags">
+                        {% for tag in post.tags %}
+                            <a href="{{ site.baseurl}}/tags/#{{tag | slugify }}">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+    </div>
+</main>

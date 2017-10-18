@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <help_text>// Uncomment the following line to change the fontsize and font:
-fontsize=10
-// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+fontsize=12
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +237,7 @@ layer=-1</panel_attributes>
     <coordinates>
       <x>54</x>
       <y>36</y>
-      <w>144</w>
+      <w>171</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>Mais fáceis do Nível
@@ -259,14 +259,14 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
+      <x>216</x>
       <y>36</y>
-      <w>252</w>
+      <w>225</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 Sugestão de Pré-Requisito</panel_attributes>
-    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>

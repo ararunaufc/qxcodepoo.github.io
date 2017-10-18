@@ -1,5 +1,6 @@
-_site
+.idea
+.DS_Store
 .sass-cache
-.jekyll-metadata
-*.ts
-tsconfig.json
+_site
+node_modules
+_drafts
