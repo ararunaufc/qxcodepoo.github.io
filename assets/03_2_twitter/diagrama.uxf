@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <help_text>// Uncomment the following line to change the fontsize and font:
 fontsize=14
 fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
@@ -29,32 +30,24 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
     <coordinates>
       <x>100</x>
       <y>350</y>
-      <w>290</w>
-      <h>90</h>
+      <w>320</w>
+      <h>200</h>
     </coordinates>
-    <panel_attributes>*Twitter*
+    <panel_attributes>*Tweett*
 bg=yellow
 --
 - idTw: int
 - username: String
 - msg: String
-
+- likes: List&lt;User&gt;
+--
++ addLike(user: User): void
+--
+Notes:
++ constructor(id, username, msg)
++ get idTw, username, msg
++ toString
 </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>490</x>
-      <y>440</y>
-      <w>380</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>bg=blue
-+constructor(username)
-+get username, seguidores, seguidos 
-+get timeline, myMsgs
-+toString</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -63,38 +56,28 @@ bg=yellow
       <x>490</x>
       <y>200</y>
       <w>380</w>
-      <h>220</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>*User*
 bg=yellow
 --
--username   : String
--seguidores : Array&lt;User&gt;
--seguidos   : Array&lt;User&gt;
--myMsgs     : Array&lt;Twitter&gt;
--timeline   : Array&lt;Twitter&gt;
--unreadCount: int
-_-nextTwId   : int_
+- username   : String
+- seguidores : Array&lt;User&gt;
+- seguidos   : Array&lt;User&gt;
+- myTweets   : Array&lt;Tweet&gt;
+- timeline   : Array&lt;Tweet&gt;
+- unreadCount: int
+_- nextTwId   : int_
 --
-+seguir(other: User): void
-+twittar(msg: String): void
-+editar(idTw: int, msg: String): void
-+getUnread(): Array&lt;Twitter&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>100</x>
-      <y>460</y>
-      <w>290</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>bg=blue
-+constructor(id, username, msg)
-+get id, username, msg
-+set msg
-+toString</panel_attributes>
++ seguir(user: User): void
++ twittar(msg: String): void
++ getUnread(): Array&lt;Tweet&gt;
+--
+Notes:
++ constructor(username)
++ get username, seguidores, seguidos 
++ get timeline, myTweets
++ toString</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -105,14 +88,14 @@ _-nextTwId   : int_
       <w>290</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>*Manager*
+    <panel_attributes>*Repository*
 bg=yellow
 --
 -usuarios: Array&lt;User&gt;
 --
 add(usuario: User): void
 get(username: String): User
-getUsers(): Array&lt;User&gt;
+getAll(): Array&lt;User&gt;
 
 </panel_attributes>
     <additional_attributes/>
@@ -131,12 +114,12 @@ getUsers(): Array&lt;User&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
+      <x>410</x>
       <y>350</y>
-      <w>130</w>
+      <w>100</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
