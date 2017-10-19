@@ -25,82 +25,80 @@ armazenar notas de texto contendo título e texto.
     - Usernames devem ser únicos no sistema.
 
 ```
->> addUser $username $password
-ok | usuario criado
-erro | username já existe
+addUser _username _password
+  ok | usuario criado
+  fail: username já existe
 ```
----
+
 
 - **[1.0 P]** Mostrar os usernames cadastrados no sistema.
 
 ```
->> showUsers
-$username1
-$username2
-...
+showUsers
+  _username1
+  _username2
+  ...
 ```
-
-----
 
 - **[2.0 P]** Logar e deslogar na conta de um usuário.
 
 ```
->> login $username $senha
-ok
-erro | username não existe
-erro | senha inválida
+login _username _senha
+  done
+  fail: username não existe
+  fail: senha inválida
 
->> logout
-ok
-erro | nenhum usuário logado
+logout
+  ok
+  fail: nenhum usuário logado
 ```
 
----
+
 - **[1.0 P]** Mudar password.
 
 ```
->> changePass $oldpass $newpass
-ok
-erro | password errado
-erro | ninguém logado
+changePass _oldpass _newpass
+  done
+  fail: password errado
+  fail: ninguém logado
 ```
 
----
+
 - **[1.0 P]** Adicionar uma nota com título e texto.
 - **[2.0 E]** Título deve ter uma palavra, mas o texto pode conter várias palavras.
     - Não deve ser possível inserir duas notas com o mesmo título para o mesmo usuário.
 
 ```
->> addNote $titulo $texto
-ok
-erro | ninguem logado
-erro | titulo ja existe
+addNote _titulo _texto
+  done
+  fail: ninguem logado
+  fail: titulo ja existe
 ```
 
----
+
 - **[1.0 E]** Apagar uma nota dado o título.
 
 ```
->> rmNote $titulo
-ok
-erro | nota não encontrada
-erro | ninguém logado
+rmNote _titulo
+  done
+  fail: nota não encontrada
+  fail: ninguém logado
 ```
 
----
+
 - **[1.0 P]** Mostrar notas
 
 ```
->> showNotes
-$titulo1 $texto1
-$titulo2 $texto2
+showNotes
+  _titulo1 _texto1
+  _titulo2 _texto2
 ...
 ```
 
----
+
 - **[1.0 P]** Inicialize seu sistema com alguns usuários e algumas notas.
 
----
+
 
 ## Pontuação
 

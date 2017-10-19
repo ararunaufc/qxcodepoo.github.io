@@ -63,10 +63,10 @@ bg=yellow
 _- nextSerId: int_
 _- nextAniId: int_
 _- nextVenId: int_
-- mSer: Repository&lt;Servico&gt;
-- mAni: Repository&lt;Animal&gt;
-- mPes: Repository&lt;Pessoa&gt;
-- vendas: List&lt;Venda&gt;
+- rSer: Repository&lt;Servico&gt;
+- rAni: Repository&lt;Animal&gt;
+- rPes: Repository&lt;Pessoa&gt;
+- rVen: Repository&lt;Venda&gt;
 --
 + addCli(cliente: Cliente): void
 + addSer(nome: String, valor: String): void
@@ -227,8 +227,8 @@ atributos públicos pra simplificar
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
-      <y>469</y>
+      <x>525</x>
+      <y>497</y>
       <w>308</w>
       <h>98</h>
     </coordinates>
