@@ -15,6 +15,9 @@ pre{background:#222;width:100%;padding:1.25rem 0;color:#fff;margin:1.875rem 0;fo
 }
 
 /* 3 e 4 */
+pre code::after {
+    content: none;
+}
 @media only screen and (min-width: 37.5rem) {
     pre {
         padding: 1.5rem 0; /* Anterior: 1.0rem 0 (cimaBaixo:1.0rem;esquerdaDireita:0) */
