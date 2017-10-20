@@ -2,7 +2,7 @@
 layout: post
 title:  "Serviço de Anotações"
 category: 'Apprendice'
-introduction: Sistema de guardar anotações com vários usuários e várias notas.
+introduction: Sinto saudades do meu finado palmtop, onde escrevia de canetinha todos os meus insights. Com essa parada de smathphone e trocentos aplicativos de anotações, perdeu foi a graça.
 description: 
 image: '/assets/02_2_anotacoes/figura.jpg'
 tags:
