@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Mercantil"
-category: 'interface'
+category: 'Expert'
 introduction: Sistema de guardar anotações com vários usuários e várias notas.
 description: 
 image: '/assets/04_mercantil/figura.jpg'

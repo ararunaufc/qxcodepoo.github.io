@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Serviço de Anotações"
-category: 'composição'
+category: 'Apprendice'
 introduction: Sistema de guardar anotações com vários usuários e várias notas.
 description: 
 image: '/assets/02_2_anotacoes/figura.jpg'
