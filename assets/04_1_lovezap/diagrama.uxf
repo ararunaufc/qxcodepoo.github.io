@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>336</y>
+      <w>504</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>*Grupo*
+bg=yellow
+--
+- username: String
+- usuarios: List&lt;Usuarios&gt;
+- naoLido: Map&lt;string, int&gt;
+- mensagens: List&lt;Mensagem&gt;
+--
++ addGrupo(grupo: Grupo): void
++ mandarMsg(msg: Mensagem, grupo: String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>0</y>
+      <w>204</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>*Mensagem*
+bg=yellow
+--
+- username: String
+- texto: String
+--
+Note:
+constructor(username, texto)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>156</y>
+      <w>504</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>*Usuario*
+bg=yellow
+--
+- username: String
+- grupos: List&lt;Grupo&gt;
+--
++ addGrupo(grupo: Grupo): void
++ mandarMsg(msg: Mensagem, grupo: String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
