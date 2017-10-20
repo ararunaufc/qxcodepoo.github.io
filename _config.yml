@@ -9,16 +9,16 @@ google_analytics: "UA-XXXXXXXX-X"
 # User Settings
 username: QxCodePoo
 user_description: Some text about you.
-disqus_username: disqus_username
+disqus_username: 
 
 # Social Media
 # Remove the item if you don't need it
 github_username: senapk
 facebook_username: sena.ufc
-twitter_username: twitter_username
-instagram_username: instagram_username
-linkedin_username: linkedin_username
-medium_username: medium_username
+twitter_username: 
+instagram_username: 
+linkedin_username: 
+medium_username: 
 
 # Build settings
 markdown: kramdown
