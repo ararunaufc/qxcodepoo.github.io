@@ -1,30 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>424</x>
-      <y>256</y>
+      <x>504</x>
+      <y>248</y>
       <w>288</w>
-      <h>224</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>*Trem*
 bg=yellow
 --
 - maxVagoes: number
-- vagoes: Array&lt;Vagao&gt;
+- vagoes: List&lt;Vagao&gt;
 --
-+ constructor(maxVagoes: number)
 + addVagao(vagao: Vagao): boolean
-
 + embarcar(pass: Passageiro): boolean
-+ desembarcar(cpf: string): Passageiro
-+ search(cpf: string): Passageiro
++ desembarcar(idPass: string): Passageiro
++ search(idPass: String): Passageiro
 
-+ getLotacao(): number
-+ getCapacidade(): number
-
-+ toString(): string
+--
+constructor(maxVagoes)
+toString
 
 </panel_attributes>
     <additional_attributes/>
@@ -32,97 +30,85 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>8</y>
-      <w>168</w>
-      <h>96</h>
+      <x>216</x>
+      <y>72</y>
+      <w>200</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>*Passageiro*
 bg=yellow
 --
-- cpf: string
+- idPass: String
 --
-+ constructor(cpf: string)
-+ get cpf(): string
-+ toString(): string
 
+--
+constructor(idPass)
+get idPass
+toString
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>424</x>
-      <y>0</y>
+      <x>504</x>
+      <y>64</y>
       <w>288</w>
-      <h>192</h>
+      <h>152</h>
     </coordinates>
     <panel_attributes>*Vagao*
 bg=yellow
 --
-- cadeiras: Array&lt;Passageiro&gt;
+- cadeiras: List&lt;Passageiro&gt;
 - capacidade: number
 --
-+ constructor(capacidade)
 + embarcar(pass: Passageiro): boolean
-+ desembarcar(cpf: string): Passageiro
-+ search(cpf: string): Passageiro
-
-+ getLotacao(): number
-+ getCapacidade(): number
-
-+ toString(): string
-
-</panel_attributes>
++ desembarcar(idPass: String): Passageiro
++ search(idPass: String): Passageiro
+--
+constructor(capacidade)
+toString</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>160</y>
+      <x>152</x>
+      <y>248</y>
       <w>288</w>
-      <h>120</h>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>*RegistroPassageiros*
+    <panel_attributes>*Registro*
 bg=yellow
 --
-- passageiros: Array&lt;Passageiros&gt;
+- cadastro: List&lt;Passageiro&gt;
+- movimentacao: List&lt;Movimento&gt;
 --
-+ constructor()
-+ addPass(pass: Passageiro): boolean
-+ getAllPass(): Array&lt;Passageiro&gt;
-+ toString(): string
++ cadastrar(pass: Passageiro): void
++ addMov(mov: Movimento): void
+--
+constructor()
+get cadastro, movimentacao
+toString
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>296</x>
-      <y>48</y>
-      <w>144</w>
+      <x>408</x>
+      <y>112</y>
+      <w>112</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>208</x>
-      <y>96</y>
-      <w>24</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>560</x>
-      <y>184</y>
+      <x>288</x>
+      <y>176</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -130,22 +116,73 @@ bg=yellow
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>208</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>360</y>
-      <w>288</w>
-      <h>120</h>
+      <x>328</x>
+      <y>432</y>
+      <w>136</w>
+      <h>64</h>
     </coordinates>
-    <panel_attributes>*Controller*
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+*Direction*
 bg=yellow
 --
-- trem: Trem
-- registro: RegistroPassageiros
+IN
+OUT</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>432</y>
+      <w>136</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>*Movimento*
+bg=yellow
 --
-+ constructor()
-+ commandLine(): void
+- idPass: String
+- direcao: Direcao
+--
+
+--
+Note:
+  toString
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>464</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>384</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
