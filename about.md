@@ -5,7 +5,7 @@ description: Some description.
 permalink: /about/
 ---
 
-<img itemprop="image" class="img-rounded" src="https://qxcodepoo.github.com/assets/img/sena.jpg" alt="Your Name">
+<img itemprop="image" class="img-rounded" src="https://qxcodepoo.github.io/assets/img/sena.jpg" alt="David Sena">
 
 ## About
 
