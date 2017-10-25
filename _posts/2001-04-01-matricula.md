@@ -137,6 +137,7 @@ showDis fup
 ## Controller
 
 - Versão em C++, adapte para sua linguagem.
+- Link para classe repository.h e poo.h para POO EC: [GIST](https://gist.github.com/senapk/cfd93eb69f28c34eaa1981476e7a7bcf)
 
 ```c++
 #ifndef CONTROLLER_H
