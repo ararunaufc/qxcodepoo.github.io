@@ -1,23 +1,92 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>336</y>
+      <x>444</x>
+      <y>264</y>
       <w>504</w>
-      <h>240</h>
+      <h>324</h>
     </coordinates>
-    <panel_attributes>*Grupo*
+    <panel_attributes>*Chat*
 bg=yellow
 --
-- username: String
-- usuarios: List&lt;Usuarios&gt;
-- naoLido: Map&lt;string, int&gt;
-- mensagens: List&lt;Mensagem&gt;
+- chatId: String
+- lista_zap: List&lt;Zap&gt;
+- lista_reg: Map&lt;String, Registro&gt;
+
+_+ enableInOutMsgs: boolean_
+_+ systemUsername: String_
 --
-+ addGrupo(grupo: Grupo): void
-+ mandarMsg(msg: Mensagem, grupo: String): void</panel_attributes>
++ addFirstUser(chatCreator: User*): bool
++ getUsers(): List&lt;String&gt;
++ deliverZap(zap: Zap): void
++ getUnread(userId: String): List&lt;Zap&gt;
++ getUnreadCount(userId: String): int
++ hasUser(userId: String): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>264</y>
+      <w>360</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>*Zap*
+bg=yellow
+--
++ userId: String
++ msg: String
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>444</x>
+      <y>0</y>
+      <w>504</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>*User*
+bg=yellow
+--
+- id: String
+- lista_chat: Map&lt;string, Chat*&gt;
+--
++ getChats(): List&lt;String&gt;
++ getOverview(): String
++ invite(chatId: String, user * User): void
++ leave(chatId: String): void
++ sendZap(msg: String, chatId: String): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>456</y>
+      <w>360</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>*Registro*
+bg=yellow
+--
++ user: User*
++ unreadCount: int
+--
+
+--
+constructor(user)
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -25,35 +94,20 @@ bg=yellow
     <coordinates>
       <x>24</x>
       <y>0</y>
-      <w>204</w>
-      <h>132</h>
+      <w>360</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>*Mensagem*
+    <panel_attributes>*Whatsapp*
 bg=yellow
 --
-- username: String
-- texto: String
+- r_chat: Repository&lt;Chat&gt;
+- r_user: Repository&lt;User&gt;
 --
-Note:
-constructor(username, texto)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>24</x>
-      <y>156</y>
-      <w>504</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>*Usuario*
-bg=yellow
---
-- username: String
-- grupos: List&lt;Grupo&gt;
---
-+ addGrupo(grupo: Grupo): void
-+ mandarMsg(msg: Mensagem, grupo: String): void</panel_attributes>
++ process(line: String): String
++ commandLine(): void
+
+
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
