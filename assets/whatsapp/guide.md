@@ -3,9 +3,8 @@ layout: post
 title: "Whatsapp Guide"
 ---
 
-
-
 ## Classes
+
 ```python
 
 
