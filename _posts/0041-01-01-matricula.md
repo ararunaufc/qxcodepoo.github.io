@@ -21,15 +21,16 @@ Vamos criar um sistema da cadastro de alunos e disciplinas. Após isso, vamos ma
     - Mostrar as todas as disciplinas cadastradas.
 
 ```
-addAlu _name _name ...
-addAlu alice edson bruno
-showAllAlu
-  [alice bruno edson]
+# :addAlu _name _name ...
+:addAlu alice edson bruno
+>  [alice bruno edson]
 
-addDis poo aps
-addDis fup
-showAllDis
-  [aps fup poo]
+:addDis poo aps
+>  done
+:addDis fup
+>  done
+:showAllDis
+>  [aps fup poo]
 ```
 
 - **Realizar Matrícula - 4 P**
@@ -39,35 +40,35 @@ showAllDis
 
 ```
 # matric _aluno _disc _disc ...
-matric bruno fup aps poo
-matric alice fup poo
-matric edson fup
-showAlu bruno
-  bruno [aps fup poo]
-showDis fup
-  fup [alice bruno edson]
+:matric bruno fup aps poo
+:matric alice fup poo
+:matric edson fup
+:showAlu bruno
+>  bruno [aps fup poo]
+:showDis fup
+>  fup [alice bruno edson]
 ```
 - **Desmatricular - 2.0 P**
     - Remover disciplinas de um aluno.
 
 ```
-# desmatric _aluno _disc _disc ...
-desmatric bruno poo aps
-showAlu bruno
-  bruno [fup]
-showDis poo
-  poo [alice]
+# :desmatric _aluno _disc _disc ...
+:desmatric bruno poo aps
+:showAlu bruno
+>  bruno [fup]
+:showDis poo
+>  poo [alice]
 ```
 - **Removendo alunos do sistema - 1.0 P**
     - Remover aluno mantendo a integridade do sistema.
 
 ```
 # rmAlu _aluno
-rmAlu bruno
-showAlu bruno
-  fail: aluno bruno nao existe
-showDis fup
-  fup [alice edson]
+:rmAlu bruno
+:showAlu bruno
+>  fail: aluno bruno nao existe
+:showDis fup
+>  fup [alice edson]
 ```
 
 ## Diagrama de Classes
