@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>12</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>264</y>
-      <w>504</w>
-      <h>324</h>
-    </coordinates>
-    <panel_attributes>*Chat*
-bg=yellow
---
-- chatId: String
-- lista_zap: List&lt;Zap&gt;
-- lista_reg: Map&lt;String, Registro&gt;
-
-_+ enableInOutMsgs: boolean_
-_+ systemUsername: String_
---
-+ addFirstUser(chatCreator: User*): bool
-+ getUsers(): List&lt;String&gt;
-+ deliverZap(zap: Zap): void
-+ getUnread(userId: String): List&lt;Zap&gt;
-+ getUnreadCount(userId: String): int
-+ hasUser(userId: String): boolean</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>24</x>
-      <y>264</y>
-      <w>360</w>
-      <h>96</h>
+      <x>140</x>
+      <y>220</y>
+      <w>300</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>*Zap*
 bg=yellow
@@ -48,22 +22,65 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>0</y>
-      <w>504</w>
-      <h>204</h>
+      <x>520</x>
+      <y>60</y>
+      <w>420</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>*User*
 bg=yellow
 --
-- id: String
-- lista_chat: Map&lt;string, Chat*&gt;
+- userId: String
+# chats : Chat[0..*]
 --
-+ getChats(): List&lt;String&gt;
-+ getOverview(): String
-+ invite(chatId: String, user * User): void
-+ leave(chatId: String): void
-+ sendZap(msg: String, chatId: String): void
++ getChats(): String[]
++ getNotify(): Notificacao[]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>60</y>
+      <w>300</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*WhatsappService*
+bg=yellow
+--
+- rep_chat: Repository&lt;Chat&gt;
+- rep_user: Repository&lt;User&gt;
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>290</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>340</y>
+      <w>300</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>*UserInbox*
+bg=yellow
+--
++ user: User
++ inbox: Zap[]
+--
 
 </panel_attributes>
     <additional_attributes/>
@@ -71,43 +88,57 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>456</y>
-      <w>360</w>
-      <h>132</h>
+      <x>520</x>
+      <y>210</y>
+      <w>420</w>
+      <h>200</h>
     </coordinates>
-    <panel_attributes>*Registro*
+    <panel_attributes>*Chat*
 bg=yellow
 --
-+ user: User*
-+ unreadCount: int
+- chatId: String
+# rgUserInbox: UserInbox[0..*]
 --
-
---
-constructor(user)
-
-</panel_attributes>
++ getMsgs(userId, qtd): Zap[]
++ deliverZap(userId, msg: Msg)
++ unreadCount(userId): int
++ hasUser(userId): boolean
++ addUserChat(user: User)
++ addByInvite(user: User, invited: User)
++ rmUserChat(user: User)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>24</x>
-      <y>0</y>
-      <w>360</w>
-      <h>168</h>
+      <x>430</x>
+      <y>370</y>
+      <w>110</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>*Whatsapp*
-bg=yellow
---
-- r_chat: Repository&lt;Chat&gt;
-- r_user: Repository&lt;User&gt;
---
-+ process(line: String): String
-+ commandLine(): void
-
-
-</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>140</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>90</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
