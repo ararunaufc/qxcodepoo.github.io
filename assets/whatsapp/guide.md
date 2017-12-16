@@ -3,137 +3,126 @@ layout: post
 title: "Whatsapp Guide"
 ---
 
-## Classes
+# Responsabilidades e Atribuições
 
-```python
+---
+### WhatsappService
+
+        - rep_user: Repository<User>
+
+É da classe de serviço a responsabilidade criar e armazenar os usuários do sistema.
+
+        - rep_chat: Repository<Chat>
+
+É da classe de serviço a responsabilidade de criar e armazenar os chats.
+
+        + executeQuery(line: string): string
+
+Esse método tem a responsabilidade de processar as solicitações realizadas no formato de comandos e parâmetros realizando ou encaminhando as solicitações. Deve retornar uma mensagem de resposta à solicitação.
+
+        + createChat(userId: String, chatId: string)
+
+Cria o chat apenas se não houver outro chat de mesmo nome. Solicita ao chat
+ através do método Chat.addUser(user: User) a inclusão do usuário que o criou.
+
+        + addByInvite(guessUserId: String, invitedUserId: String, chatId: String): void
+
+Encaminha ao grupo a solicitação de incluir o usuário **invited** apenas se o usuário **guess** já fizer parte do grupo.
+
+### User
+
+        - id: String
+
+User possui um id único entre todos os usuários.
+
+        # chats: Chat[0..*]
+
+User possui uma referência a todos os chats com que se comunica. A variável aparece com visibilidade de pacote. Cabe à classe Chat acessar a variável fazer a inserção cruzada adicionando o objeto chat no usuário e o objeto user no chat.
+
+        + getChats(): String[]
+
+Retorna a lista dos identificadores dos chats que participa.
+
+        + getNotify(): Notify[]
+
+O método solicita a cada chat que o user participa a informação
+de quantas mensagens não lidas neste chat o user possui através do método 
+Chat.unreadCount(userId).
+Então retorna uma lista de notificacoes, uma tupla(chatId, qtd),
+para informar quantas mensagens não lidas há em cada chat.
+
+        +sendMsg(idChat: String, text: String)
+
+Cabe a classe user iniciar a transmissão de uma mensagem. O objeto
+chat é localidado na lista de chats a partir do chatId. O objeto Msg é
+criado a partir do id de user e do texto da mensagem e encaminhado
+para o médodo Chat.deliverMsg(msg). Cabe ao chat a responsabilidade
+de colocar a mensagem do emissor no inbox de todos os outros usuários
+do chat.
 
 
-# classe sem mistérios, serve para conduzir informações
-class Zap:
-    # faca construtor e inicizalizações
-    def toString():
-        return "[" + userId + ": " + msg + "]";
+---
+## Chat
 
+        - id: String
 
+Cada chat possui um identificador único entre todos os chats.
 
-class User:
-    #guarde um mapa de nome do chat para sua referencia ao chat
-    map<string, Chat> lista_chat
-    userId
+        # inboxes: Inbox[0..*]
 
+Cada chat precisa possuir as referências ao usuários que dele fazem parte. Associado a cada usuário existe um inbox que guarda as mensagens destinadas a este usuário. Um Inbox é uma Tupla(User, Msg[]) que guarda a referência ao
+objeto user e a lista de mensagens deste usuário.
 
-    def constructor(chatId ):
-        # inicialize tudo
+        + getMsgs(userId): Msg[]
 
-    def getChats():
-    # retorne uma lista com os identificadores dos chats
+Procura o usuário em this.inboxes, obtem sua lista de mensagens. Ao retornar
+a lista de mensagens, a lista que fica no inbox deve ser zerada para evitar 
+que o usuário obtenha duas vezes a mesma mensagem.
 
-    def getOverview():
-    # monte uma string com o nome de cada chat e se existir, 
-    # a quantidade de mensagens não lidas no chat
+        + deliverZap(msg: Msg)
 
-    def assertChat(chatId):
-    # sugito criar esse método que testa se esse user tem
-    # um chat com esse nome. Se não existir, lance uma excessão.
-    # você pode usar esse métodos em todos os outros abaixo
-    # para garantir estar trabalhando com dados válidos 
+A class user inicia a comunicação criando o objeto Msg e encaminhando ao chat. Cabe ao chat verificar se essa msg pertence a um usuário que faça parte do grupo e colocar a referência à mensagem nas caixas de entrada de todos os **outros** usuários do chat.
 
-    def invite(chatId, user):
-    # teste se o chat existe
-    # obtenha o objeto chat
-    # se o usuario ja esta no chat, retorne
-    # abra um registro para esse usuario no chat
-    # adicione esse chat na lista dos usuarios
-    # se as mensagens de InOut estiverem habilitadas
-        # envie uma mensagem avisando que o novo usuario chegou
+        + unreadCount(userId): int
 
-
-    def leave(chatId):
-    # teste se voce tem esse chat
-    # se retire da lista do chat
-    # retire o chat da sua lista
-    # se habilitado, mande mensagem avisando que voce saiu
-
-    def sendZap(msg, chatId):
-    # teste se voce tem esse chat
-    # obtenha o objeto chat
-    # delegue para o chat entregar o objeto Zap que voce criou
-
-    def toString():
-    # retorne o userId
+Retorna quantas mensagens este usuário possui no chat.
     
+        + addUserChat(user: User)
 
+Adiciona um usuário na lista de usuários do chat criando um inbox para
+ele na lista de inboxes. Também adiciona o próprio chat na lista de chats
+do usuário.
 
-class Registro:
-    user #referencia para usuario
-    unreadCount # contagem de mensagens nao lidas
+        + rmUserChat(user: User)
 
-    def constructor(user):
-    # inicie todas as variaveis
+Remove o usuário **user** do chat removendo sua respectiva Inbox, e remove o objeto chat da lista de chats de **user**.
 
+---
+### Classes Adicionais
 
+Crie o Contrutor e o método toString mais apropriado para cada classe.
 
-class Chat:
-
-    # onde voce guarda o mapeamento entre nomes de usuario,
-    # as referencias para o usuario e a contagem de mensagens
-    # nao lidas
-    lista_reg
-
-    lista_zap # a lista de mensagens do grupo    
-
-    # para saber se deve notificar entradas e saidas do grupo
-    # static define que ela pertence à classe Chat
-    static bool enableInOutMsgs; 
-
-    # crie essa variavel static e const para definir
-    # que o username system é reservado para notificacoes do sistema 
-    static const string systemUsername = "system"
-    
-    #id do chat
-    string chatId;
-
-    def constructr(chatId):
-    # inicialize TUDO
-
-    # antes de fazer os convites, o primeiro usuário precisar ser
-    # adicionado ao grupo. Utilize esse método após criar o grupo.
-    def addFirstUser(user):
-    # teste se a lista de usuarios esta vazio
-    # adicione o usuario
-    # se adicione a lista de grupos do usuario
-
-    def getUsers():
-    # retorne uma lista com as chaves dos usuarios
-
-    def assertUser(user):
-    # mesma logica do assertChat
-
-    def deliverZap(zap):
-    # se nao for um zap do sistema, teste se o usuario esta no chat
-    # adicione o zap na lista do grupo
-    # para cada usuario do grupo
-        # se ele nao for o emissor
-            # incremente o contador de nao lidos
-
-    def getUnreadCount(userId):
-    # retorne a quantidade de mensagens nao lidas desse user
-
-    def getUnread(userId):
-    # teste se usuario existe no grupo
-    # crie lista de retorno
-    # veja quantas sao as mensagens nao lidas desse usuario
-    # já coletando mensagens do grupo que nao forem emitidas
-    # por esse usuario ate atingir a quantidade de nao lidas.
-    # zere a quantidade de mensagens nao lidas
-    # se nao houver mensagens, retorne que nao ha mensagens
-
-    def hasUser(userId):
-    # retorne se o usuario esta nesse grupo
-    
-    def toString():
-    # retorne chatId
 ```
+*Notify*
+--
++ chatId: String
++ unreadCount: int
+--
 
+###################
 
+*Msg*
+--
++ userId: String
++ text: String
+--
 
+###################
+
+*Inbox*
+--
++ user: User
++ msgs: Msg[]
+--
+
+```
