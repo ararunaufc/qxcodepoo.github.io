@@ -4,7 +4,7 @@ title:  "Calculadora"
 category: 'Novice' 
 introduction: Vamos somar, dividir e lançar excessões.
 description:
-image: '/assets/calculadora/figura.png'
+image: '/assets/calculadora/figura.jpg'
 tags:
 - base
 ---
@@ -12,6 +12,9 @@ tags:
 O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bateria, ela executa operações de soma, multiplicação e divisão. É possível também mostrar a quantidade de bateria e recarregar a calculadora. Ela avisa quando está sem bateria e se há tentativa de divisão por 0.
 
 Nessa atividade, você deverá criar duas classes. A classe Calculadora que realiza as operações e lança excessões caso a bateria acabe ou haja divisão por 0. A Classe Calculadora não se comunica diretamente com o usuário através de comandos de print. Ela apenas executa cálculos e retorna resultados. A segunda classe é um Controlador que trata os comandos do usuário encaminhando à Calculadora e devolvendo as respostas.
+
+## Run
+[](/assets/calculadora/main.html)
 
 ## Funcionalidades
 Seu sistema deverá:
@@ -73,56 +76,71 @@ soma c b
   fail: var c nao definida
 ```
 
-## Diagrama de Classes
-@sq@sq@s2@s2@s@@s1@s2@@s3@s4
+## Implementação em Python
+
+```python
+class Calculadora:
+    def __init__(self, bateriaInicial = 2):
+        self.bateria = bateriaInicial;
+    
+    def useBattery(self):
+        if self.bateria == 0 :
+            raise Exception("fail: Bateria acabou")
+        self.bateria -= 1
+
+    def sum(self, a = 0, b = 0):
+        self.useBattery()
+        return a + b
+
+    def div(self, a = 0, b = 0):
+        self.useBattery()
+        if b == 0:
+            raise Exception("fail: Divisao por zero nao permitida")
+        return float(a) / b
+
+    def charge(self, carga = 0):
+        self.bateria += carga
 
 
-```typescript
-class Calculadora {
-    bateria: number;
-    useBattery(){
-        if(this.bateria == 0)
-            throw new Error("fail: Bateria acabou");
-        this.bateria -= 1;
-    }
-    charge(carga: number){
-        this.bateria += carga;
-    }
-}
+class Controller:
+    def __init__(self):
+        self.calc = Calculadora();
 
+    def execQuery(self, line = ""):
+        ui = line.split(" ")
+        cmd = ui[0]
 
-class Controller{
-    calc: Calculadora;
-    process(line: string): string{
-        let ui = line.split(" ");
-        let cmd = ui[0];
-        if(cmd == "sum")//a  b
-            return "" + this.calc.sum(Number(ui[1]), Number(ui[2]));
-        else if(cmd == "charge")//carga
-            this.calc.charge(Number(ui[1]));
-        else if(cmd == "show")
-            return "" + this.calc.bateria;
-        else
+        if cmd == "help":
+            return "sum _a _b\ncharge _carga\nshow\ndiv _a _b";
+        elif cmd == "sum": # a  b
+            return "= " + str(self.calc.sum(float(ui[1]), float(ui[2])))
+        elif cmd == "charge":  # carga
+            self.calc.charge(float(ui[1]))
+        elif(cmd == "show"):
+            return "bateria: " + str(self.calc.bateria)
+        elif(cmd == "div"):
+            return "= " + str(self.calc.div(float(ui[1]), float(ui[2])))
+        else:
             return "comando invalido";
         return "done";
-    }
 
-    static shell(){
-        poo.print("Digite um comando ou help: ");
-        while(true){
-            let line = poo.getline("");
-            try{
-                let result = this.process(line);
-                poo.print(result);
-            }catch(e){
-                poo.print(e.message);
-            }
-        }
-    }
-}
+class IO:
+    def tab(text = ""):
+        return "  " + "\n  ".join(text.split("\n"))
 
-let cont = new Controller();
-poo.shell();
+    def shell(execQuery):
+        print("Digite um comando ou help: ")
+        while True:
+            line = input("")
+            if (line == "") or (line[0] == " "):
+                continue
+            try:
+                print(IO.tab(execQuery(line)))
+            except Exception as e:
+                print(IO.tab(e.args[0]))
+
+cont = Controller();
+IO.shell(cont.execQuery)
 ```
 
 ![](/assets/contato/diagrama.png)

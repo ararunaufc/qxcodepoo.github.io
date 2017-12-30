@@ -2,12 +2,11 @@
 layout: post
 title:  "Época de Matrícula"
 category: 'Expert'
-introduction: Oba, aceitaram minha matrícula em POO. Eita pitombas, foi com o David!
+introduction: Oba, aceitaram minha matrícula em POO. Eita pitombas, vai ser em C++!
 description: 
 image: '/assets/matricula/figura.png'
 tags:
 - nxn
-- repositórios
 ---
 
 Vamos criar um sistema da cadastro de alunos e disciplinas. Após isso, vamos matricular e remover alunos das disciplinas. Aqui, cada aluno sabe quais as disciplinas em que está matriculado e a disciplina sabe os alunos que ela contém.
@@ -22,15 +21,21 @@ Vamos criar um sistema da cadastro de alunos e disciplinas. Após isso, vamos ma
 
 ```
 # :addAlu _name _name ...
-:addAlu alice edson bruno
->  [alice bruno edson]
-
-:addDis poo aps
->  done
-:addDis fup
->  done
-:showAllDis
->  [aps fup poo]
+nwalu alice edson bruno
+    done
+nwdis poo aps
+  done
+nwdis fup
+  done
+la
+  alunos:
+    alice []
+    bruno []
+    edson []
+  discps:
+    aps []
+    fup []
+    poo []
 ```
 
 - **Realizar Matrícula - 4 P**
@@ -39,36 +44,58 @@ Vamos criar um sistema da cadastro de alunos e disciplinas. Após isso, vamos ma
     - Mostrar os alunos de uma disciplina.
 
 ```
-# matric _aluno _disc _disc ...
-:matric bruno fup aps poo
-:matric alice fup poo
-:matric edson fup
-:showAlu bruno
->  bruno [aps fup poo]
-:showDis fup
->  fup [alice bruno edson]
+# mat _aluno _disc _disc ...
+mat bruno fup aps poo
+  done
+mat alice fup poo
+  done
+mat edson fup
+  done
+  bruno [aps fup poo]
+la
+  alunos:
+    alice [fup poo]
+    bruno [aps fup poo]
+    edson [fup]
+  discps:
+    aps [bruno]
+    fup [alice bruno edson]
+    poo [alice bruno]
+
 ```
 - **Desmatricular - 2.0 P**
     - Remover disciplinas de um aluno.
 
 ```
-# :desmatric _aluno _disc _disc ...
-:desmatric bruno poo aps
-:showAlu bruno
->  bruno [fup]
-:showDis poo
->  poo [alice]
+# rmmat _aluno _disc _disc ...
+rmmat bruno poo aps
+  done
+la
+  alunos:
+    alice [fup poo]
+    bruno [fup]
+    edson [fup]
+  discps:
+    aps []
+    fup [alice bruno edson]
+    poo [alice]
 ```
+
 - **Removendo alunos do sistema - 1.0 P**
     - Remover aluno mantendo a integridade do sistema.
 
 ```
-# rmAlu _aluno
-:rmAlu bruno
-:showAlu bruno
->  fail: aluno bruno nao existe
-:showDis fup
->  fup [alice edson]
+# rmalu _aluno
+rmalu alice
+  done
+la
+  alunos:
+    bruno [fup]
+    edson [fup]
+  discps:
+    aps []
+    fup [bruno edson]
+    poo []
 ```
 
 ## Diagrama de Classes
