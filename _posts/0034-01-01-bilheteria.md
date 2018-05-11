@@ -2,8 +2,8 @@
 layout: post
 title: "Bilheteria"
 category: 'Adept'
-introduction: Totó tá com a perna dodói. Faça o sistema da clínica veterinária para cadastrar clientes, animais, servicos e vendas.
-description: 
+introduction: 
+description: Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI
 image: '/assets/bilheteria/figura.jpg'
 tags:
 - agregação
@@ -11,105 +11,77 @@ tags:
 - template
 ---
 
-Você deve desenvolver o sistema de uma clínica veterinária que deve ser capaz de:
+Você deve desenvolver um sistema para gerenciar as vendas de uma bilheteria de shows
 
 ---
 
-## Requisitos Parte 1
+## Requisitos
 
-- Cadastrar clientes pelo idCliente
-    - Id de cliente deve ser único entre os clientes
-    - Cliente tem um id e um nome de múltiplas palavras
+- Cadastrar uma pessoa pelo nome.
+    - nome da pessoa é único
+    - pessoa deve ter nome, idade e pode ou não ser estudante
 - Mostrar todos os clientes
 
 ```
-# nwcli _idCli _nome_completo
-nwcli luke luke skywallker
+# addPessoa _nome _idade _estudante
+addPessoa steve 32 nao
   done
-nwcli lea princesa lea
+addPessoa tony 43 sim
   done
-nwcli vader darth vader
-  done
-nwcli lea fracileia moreira
-  fail: cliente lea ja cadastrado.
-lacli
-  cli luke: luke skywallker
-  cli lea: princesa lea
-  cli vader: darth vader
+addPessoa steve 24 sim
+  fail: pessoa steve ja existe
+showP
+  [steve, 32, nao],
+  [tony, 43, sim]
 
 ```
 
-- Cadastrar animais.
-    - Animal tem um id, um nome e uma especie e está vinculado a um único cliente.
-    - Cada animal cadastrado deve receber um id único inteiro crescente do sistema.
-    - Um cliente não pode ter dois animais com o mesmo nome.
-- Mostrar todos os animais cadastrados.
-- Mostre os clientes com seus animais.
+- Cadastrar evento pelo nome.
+    - Assim como pessoa, nome do evento é único
+    - Um evento pode ter vários setores
+- Cadastrar setor pelo nome.
+    - Setor tem nome e preço
+    - Setores do MESMO EVENTO não podem ter o mesmo nome
+- Mostrar evento e setores de um evento cadastrados
 
 ```
-# addAni _idCli _idAni _especie
-nwani vader rex gato
+# addEvento _nome
+addEvento orappa
   done
-nwani vader chaninha urubu
+#addSetor _nome-evento _nome _preco
+addSetor orappa front 70
   done
-nwani vader rex dino
-  fail: animal rex ja existe
-lscli vader
-  cli vader: darth vader [1:rex:gato][2:chaninha:urubu]
-nwani luke rosinha chinchila
+addSetor orappa pista 35
   done
-laani
-  [1:rex:gato]
-  [2:chaninha:urubu]
-  [3:rosinha:chinchila]
-```
-
-- Adicionar serviços na clínica.
-    - Cada serviço tem um id único e um preço.
-- Mostrar os serviços cadastrados
+showE
+  [orappa]
+showS orappa
+  [front],
+  [pista]
 
 ```
-# addSer _idSer _preco
-nwser tosa 30.0
-  done
-nwser banho 15.0
-  done
-nwser tingimento 150.0
-  done
-laser
-  [tosa 30.0]
-  [banho 15.0]
-  [tingimento 150.0]
-```
 
-- Vender serviços para um animal passando id do cliente e nome do animal.
-- Dê para cada venda um id inteiro único crescente.
-- Mostrar vendas.
-- Mostrar dinheiro total recebido.
-- Trate os possíveis erros.
+- Realizar venda
+    - Uma venda deve ter pessoa, evento, setor e preco
+    - O atributo preco da venda será obtido através do atributo preco do setor
+    - O identificador único da venda é o nome do cliente(Pessoa)
+    - Se o cliente for menor de 2 anos, não paga
+    - Se o cliente tiver até 12 anos ou for estudante, paga meia
+    - O valor da venda deve ser contabilizado em um caixa
+- Mostrar vendas realizadas e o valor atual em caixa
 
 ```
-nwven luke rosinha tosa
+#vender _Pessoa _Evento _Setor
+vender tony orappa front
   done
-nwven vader rex banho
-  done
-nwven luke rosinha tingimento  
-  done
-nwven r2d2 rex banho
-  fail: cliente r2d2 nao existe
-nwven luke xuxu banho
-  fail: animal xuxu nao existe
-nwven luke rosinha castracao
-  fail: servico castracao nao existe
-laven
-  [0 luke rosinha tosa]
-  [1 vader rex banho]
-  [2 luke rosinha tingimento]
-saldo
-  Saldo 195 reais
+vender steve orappa camarote
+  fail: setor camarote nao existe
+
+#showV
+showV
+  [tony, orappa, front, 35]
+
+#showC
+showC
+  R$ 35.00
 ```
-
-
-## Sugestão de Diagrama de classes
-
-![](/assets/clinica/diagrama.png)
