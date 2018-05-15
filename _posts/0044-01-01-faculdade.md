@@ -1,3 +1,14 @@
+---
+layout: post
+title:  "Faculdade"
+category: 'Expert'
+introduction: Quanto ganha um professor?
+description: 
+image: '/assets/faculdade/figura.jpg'
+tags:
+- nxn
+- repositórios
+---
  Vamos modelar o controle de pagamento de uma empresa privada de ensino.
 
  Existem 3 categorias: "prof", "sta", "terc" representando
