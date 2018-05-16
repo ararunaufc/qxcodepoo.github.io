@@ -2,8 +2,8 @@
 layout: post
 title: "Bilheteria"
 category: 'Adept'
-introduction: 
-description: Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI
+introduction: Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI 
+description:
 image: '/assets/bilheteria/figura.jpg'
 tags:
 - agregação
