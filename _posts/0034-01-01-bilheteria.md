@@ -88,7 +88,7 @@ showC
 ---
 ## Raio X
 
-```c++
+```
 class Pessoa
 - nome: String
 - idade: int
@@ -100,8 +100,8 @@ class Pessoa
 + toString(): String
 --
 constructor(nome, idade, estudante)
-
-```c++
+```
+```
 class Setor
 - nome: String
 - preco: double
@@ -111,8 +111,8 @@ class Setor
 + toString(): String
 --
 + constructor(nome, preco)
-
-```c++
+```
+```
 class Evento
 - nome: String
 - rsetores: Repository<Setor>
@@ -121,8 +121,8 @@ class Evento
 + toString(): String
 --
 + constructor(nome)
-
-```c++
+```
+```
 class Venda
 - cliente: Pessoa
 - evento: Evento
@@ -136,8 +136,8 @@ class Venda
 + toString(): String
 --
 + constructor(cliente, evento, setor)
-
-```c++
+```
+```
 class Bilheteria
 - rvendas: Repository<Venda>
 - caixa: double
@@ -145,4 +145,4 @@ class Bilheteria
 + vender(cliente: Pessoa, evento:Evento, setor:Setor): void
 + getVendas(): Repository<Venda>
 + getCaixa(): double
-
+```
