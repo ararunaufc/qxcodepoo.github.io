@@ -85,3 +85,64 @@ showV
 showC
   R$ 35.00
 ```
+---
+## Raio X
+
+```c++
+class Pessoa
+- nome: String
+- idade: int
+- estudante: boolean
+--
++ getNome(): String
++ getIdade(): int
++ isEstudante(): boolean
++ toString(): String
+--
+constructor(nome, idade, estudante)
+
+```c++
+class Setor
+- nome: String
+- preco: double
+--
++ getNome(): String
++ getPreco(): double
++ toString(): String
+--
++ constructor(nome, preco)
+
+```c++
+class Evento
+- nome: String
+- rsetores: Repository<Setor>
+--
++ getNome(): String
++ toString(): String
+--
++ constructor(nome)
+
+```c++
+class Venda
+- cliente: Pessoa
+- evento: Evento
+- setor: Setor
+- valor: double
+--
++ getValor(): double
++ getCliente(): Pessoa
++ getEvento(): Evento
++ getSetor(): Setor
++ toString(): String
+--
++ constructor(cliente, evento, setor)
+
+```c++
+class Bilheteria
+- rvendas: Repository<Venda>
+- caixa: double
+--
++ vender(cliente: Pessoa, evento:Evento, setor:Setor): void
++ getVendas(): Repository<Venda>
++ getCaixa(): double
+
