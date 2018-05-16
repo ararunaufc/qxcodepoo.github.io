@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <help_text>// Uncomment the following line to change the fontsize and font:
 fontsize=10
 // fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
@@ -87,6 +88,7 @@ bg=yellow
 --
 + abrirNovaConta(conta: Conta) : boolean
 + encerrarConta(numero : String) : boolean
++ toString(): String
 --
 + constructor(idCliente)
 + gets idCliente, contas</panel_attributes>

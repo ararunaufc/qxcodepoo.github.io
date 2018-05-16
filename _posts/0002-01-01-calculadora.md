@@ -72,13 +72,13 @@ show
 
 ```c++
 class Calculadora  
-  + bateria: int
-  --
-  + charge(value: int): void
-  + soma(a: float, b: float): float
-  + div(a: float, b: float): float
-  --
-  + constructor, toString
++ bateria: int
+--
++ charge(value: int): void
++ soma(a: float, b: float): float
++ div(a: float, b: float): float
+--
++ constructor, toString
 ```
 
 
