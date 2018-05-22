@@ -2,8 +2,8 @@
 layout: post
 title: "Bilheteria"
 category: 'Adept'
-introduction: 
-description: Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI
+introduction: Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI 
+description:
 image: '/assets/bilheteria/figura.jpg'
 tags:
 - agregação
@@ -84,4 +84,63 @@ showV
 #showC
 showC
   R$ 35.00
+```
+---
+## Raio X
+
+````java
+class Pessoa
+- nome: String
+- idade: int
+- estudante: boolean
+--
++ getNome(): String
++ getIdade(): int
++ isEstudante(): boolean
++ toString(): String
+--
+constructor(nome, idade, estudante)
+
+class Setor
+- nome: String
+- preco: double
+--
++ getNome(): String
++ getPreco(): double
++ toString(): String
+--
++ constructor(nome, preco)
+
+class Evento
+- nome: String
+- rsetores: Repository<Setor>
+--
++ getNome(): String
++ toString(): String
+--
++ constructor(nome)
+
+class Venda
+- cliente: Pessoa
+- evento: Evento
+- setor: Setor
+- valor: double
+--
++ getValor(): double
++ getCliente(): Pessoa
++ getEvento(): Evento
++ getSetor(): Setor
++ toString(): String
+--
++ constructor(cliente, evento, setor)
+````
+
+```c++
+class Bilheteria
+- rvendas: Repository<Venda>
+- caixa: double
+--
++ vender(cliente: Pessoa, evento:Evento, setor:Setor): void
++ getVendas(): Repository<Venda>
++ getCaixa(): double
 ```
