@@ -11,40 +11,45 @@ tags:
 - padrão decorator
 ---
 ```
-# Parte 1: adicionar produtos mostrando individualmente
-# addProd idProd preco descricao
-# o idProd deve ser unico
-addProd mouse 25.00 mouse gamer
-addProd pen32 30.00 pendrive kingston 32Gb
-addProd noteL 2500  notebook lenovo
 
 # loja online
 
+ #addPr idProd preco
 addPr veja 3.50
 addPr bombril 4.00
 addPr rodo 15.00
 addPr balde 2.00
 addPr limpol 5.00
 
+addPacote  pacbalde rodo balde balde
+addPromo   bombombril bombril 30
+addPacote  paclimpeza limpol veja bombombril
+addPromo   promolimpeza paclimpeza 20
+
+ #addEst idProd qtd
 addEstoque veja 10
 addEstoque rodo 5
 addEstoque balde 2
-addEstoque bombril 1
-addEstoque limpol 30
+addEstoque limpol 50
+addEstoque bombril 10
 
-addPacote  rbalde rodo 1 balde 2
-addPromo   bombombril bombril 30
-addPacote  limp5 limpol 5
-addPromo   promolimp5 limp5 20
+addEstante bombril bombombril pacbalde promolimpeza
 
-
-addEstante veja
-addEstante rbalde
-addEstante bombombril
-addEstante promolimp5
+comprar bombril
 
 verEstante
 
 
 
 ```
+
+
+
+Item (Produto, ItemDesc, Pacote)
+Class ItemEstoque
+    Produto
+    qtd
+Estoque
+    List<ItemEstoque>
+Estante
+    List<Item>
