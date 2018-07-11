@@ -118,5 +118,30 @@ showNotes
 [ ]        Total Extras
 ```
 
-# Diagrama de Classes
-![](/assets/anotacoes/diagrama.png)
+---
+## Raio X
+
+````java
+class Nota
++ titulo: String
++ texto: String
+--
++ toString(): String
+
+class Usuario
+- username: String
+- password: String
+- notas: List<Nota>
+--
++ addNote(note: Nota): boolean
++ rmNote(titulo: String): boolean
++ changePass(oldPass: String, newPass: String): boolean
++ toString(): String
+
+class Sistema
+- usuarios: List<Usuario>
+--
++ addUser(userName: String, password: String): boolean
+
+
+````
