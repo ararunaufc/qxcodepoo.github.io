@@ -97,10 +97,53 @@ la
     fup [bruno edson]
     poo []
 ```
+---
+## Raio X
 
-## Diagrama de Classes
+````java
+class Aluno
+- idAluno: String
+~ m_discp: List<Discp>
+--
++ matricular(discp: Discp): void
++ desmatricular(idAluno: String): void
++ getDisciplinas(): List<Discp>
+--
++ constructor(idAluno)
++ getIdAluno()
+````
 
-![](/assets/matricula/diagrama.png)
+````java
+class Discp
+- idDiscp: String
+~ m_aluno: List<Aluno>
+--
++ matricular(aluno: Aluno): void
++ desmatricular(idAluno: String): void
++ getAlunos(): List<Aluno>
+--
++ constructor(idDiscp)
++ getIdDiscp()
+````
 
-## Guide
-[Guide](/assets/matricula/guide)
+````java
+class Repository<T>
+- typename: String
+- mapa: Map<String, T>
+--
++ add(key: String, t: T): void
++ get(key:String): T
++ rm(key: String): void
++ has(key: String): boolean
++ keys(): List<String>
++ getAll() List<T>
+--
++ constructor(typename: String)
+OBS: lançar exceções em caso de erros
+````
+
+````java
+class Controller
+- r_alu: Repository<Aluno>
+- r_dis: Repository<Discp>
+````  
