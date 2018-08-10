@@ -193,8 +193,54 @@ transf   _idConta _idContaDestino _valor
 [ ][1.0 P] mostrar clientes ordenados
 ```
 
-## Diagrama de Classes
 
-O diagrama é uma **sugestão** de métodos e parâmetros. Sinta-se livre para alterar conforme sua necessidade. Os métodos gets e sets são omitidos em diagramas de classes.
+---
+## Raio X
 
-![](/assets/banco/diagrama.png)
+````java
+class Agencia
+- clientes: List<Cliente>
+--
++ addCliente(cpf: String): boolean
++ abrirNovaConta(cpf: String): boolean
+--
++ getClientes(): List<Cliente>
+
+class Cliente
+- idCliente: String
+- contas: List<Conta>
+--
++ constructor(idCliente: String)
++ addConta(conta: Conta): boolean
++ encerrarConta(numero: String): boolean
++ getIdCliente()
++ getConta()
+
+class Operacao
+- descricao: String
+- valor: float
+- saldoParcial: float
+--
++ constructor(desc, valor, saldo)
++ getDescricao()
++ getValor()
++ getSaldo()
++ setDescricao()
++ setValor()
++ setSaldo()
+
+class Conta
+- saldo: float
+- numero: int
+- extrato: List<Operacao>
+- ativa: boolean
+--
++ depositar(value: float): boolean
++ sacar(value: float): boolean
++ transferir(other: Conta, value: float): boolean
++ encerrar(): void
++ getSaldo()
++ getNumero()
++ getAtiva()
++ getExtrato()
+````
