@@ -6,3 +6,4 @@ node_modules
 _drafts
 Gemfile.lock
 __*
+*.class
