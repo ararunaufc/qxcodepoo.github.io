@@ -24,16 +24,25 @@ Nessa atividade, você deverá criar três classes.
 ## Funcionalidades
 Seu sistema deverá:
 
-### Parte 1
+- **[2.0 P] Inicializando.** 
+    - Realizar operações de soma substração e mostrar o resultado.
+- **[2.0 P] Colocando bateria.**
+    - Mostrar a bateria da calculadora.
+    - Diminuir a bateria em uma unidade em cada operação matemática realizada.
+    - Recarregar a bateria passando a quantidade de carga como parâmetro.
+        - A bateria tem carga máxima de 5 unidades.
+- **[2.0 P] Acabando a bateria.**
+  - Se não houver mais bateria, seu programa deve notificar o usuário e não dar a resposta da operação matemática.
+- **[2.0 P] Divisão.**
+- Efetuar operações de divisão. 
+    - Se houver divisão por 0, notifique o usuario. Mesmo que não haja resultado, essa divisão ainda consome uma unidade de bateria.
 
-- Iniciar a calculadora. 
-    - Ao iniciar, sua calculadora terá bateria para efetuar duas operações matemáticas.
-- Mostrar a bateria da calculadora.
-- Recarregar a bateria passando como parametro a quantidade de carga.
-    - O máximo de carga que a bateria suporta é cinco unidades.
-- Realizar operações de soma.
 
-```
+```python
+
+#######################################
+# Inicializando
+#######################################
 show
   bateria: 2
 soma 4 3
@@ -44,15 +53,11 @@ soma 8 9
   = 17 
 show
   bateria: 0
-```
 
-### Parte 2
+#######################################
+# Recarregando
+#######################################
 
-- Se não houver mais bateria, notifique o usuário, lançando uma excessão.
-- Efetue operações de divisão. 
-    - Se houver divisão por 0, notifique o usuario.
-
-```
 soma 1 1
   fail: bateria insuficiente
 charge 10
@@ -61,10 +66,21 @@ show
   bateria: 5
 div 6 3
   = 2
+
+#######################################
+# Dividindo
+#######################################
+
 div 7 0
   fail: divisao por zero
 show
   bateria: 3
+div 7 2
+  = 3.5
+div 7 1
+  = 7
+div 4 2
+  fail: bateria insuficiente
 ```
 
 ---
@@ -72,19 +88,19 @@ show
 
 ```c++
 class Calculadora  
-+ bateria: int
++ battery: int
++ maxBattery: int
 --
-+ charge(value: int): void
-+ soma(a: float, b: float): float
++ charge(value: int): void //recarrega
++ useBattery();            //usa uma unidade de bateria
++ sum(a: float, b: float): float
 + div(a: float, b: float): float
 --
-+ constructor, toString
++ constructor(batteryMax)
++ getBattery()
 ```
-
 
 ---
 ## Soluções
 
-[Java](/assets/calculadora/java)
-
-[Python](/assets/calculadora/python)
+[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/calculadora.java)
