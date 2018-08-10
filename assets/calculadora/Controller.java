@@ -55,8 +55,8 @@ class Controller{
 		calc = new Calculadora();
 	}
 	
-	//nossa funcao oraculo que recebe uma pergunta e retorna uma resposta
-	public String oracle(String line){
+	//nossa funcao shell que recebe uma pergunta e retorna uma resposta
+	public String shell(String line){
 		String ui[] = line.split(" ");
 
 		if(ui[0].equals("help"))
@@ -79,7 +79,7 @@ class Controller{
 		System.out.println("Digite um comando ou help:");
 		while(true){
 			String line = scan.nextLine();
-			String answer = cont.oracle(line);
+			String answer = cont.shell(line);
 			System.out.println("  " + answer);
 		}
 	}

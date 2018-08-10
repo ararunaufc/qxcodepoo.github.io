@@ -102,7 +102,7 @@ class Calculadora
 class Controller
 - calc: Calculadora
 --
-+ oracle(line: String): String //encaminha as perguntas e devolve as respostas
++ shell(line: String): String //encaminha as perguntas e devolve as respostas
 --
 + main() //responsavel pelo loop
 ```
