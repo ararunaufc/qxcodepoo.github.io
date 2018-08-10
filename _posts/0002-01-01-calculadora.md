@@ -86,7 +86,7 @@ div 4 2
 ---
 ## Raio X
 
-```c++
+```java
 class Calculadora  
 + battery: int
 + maxBattery: int
@@ -98,9 +98,16 @@ class Calculadora
 --
 + constructor(batteryMax)
 + getBattery()
+
+class Controller
+- calc: Calculadora
+--
++ oracle(line: String): String //encaminha as perguntas e devolve as respostas
+--
++ main() //responsavel pelo loop
 ```
 
 ---
-## Soluções
+## Resposta
 
-[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/calculadora.java)
+[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
