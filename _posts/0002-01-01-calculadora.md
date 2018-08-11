@@ -11,10 +11,6 @@ tags:
 
 O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bateria, ela executa operações de soma, multiplicação e divisão. É possível também mostrar a quantidade de bateria e recarregar a calculadora. Ela avisa quando está sem bateria e se há tentativa de divisão por 0.
 
-Nessa atividade, você deverá criar três classes. 
-- A classe Calculadora que realiza as operações e lança excessões caso a bateria acabe ou haja divisão por 0. A Classe Calculadora não se comunica diretamente com o usuário através de comandos de print. Ela apenas executa cálculos e retorna resultados. 
-- A segunda classe é um Controlador que implementa o shell que processa perguntas em respostas.
-- A terceira classe é quem faz a interface com o usuário que faz entrada e saída. 
 
 ---
 ## [Run](/assets/calculadora/main.html)
