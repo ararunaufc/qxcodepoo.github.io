@@ -24,25 +24,43 @@ armazenar notas de texto contendo título e texto.
 - **[1.0 P]** Criar usuário passando username e password.
     - Usernames devem ser únicos no sistema.
 
-```
+- **[1.0 P]** Mostrar os usernames cadastrados no sistema.
+
+- **[2.0 P]** Logar e deslogar na conta de um usuário.
+
+- **[1.0 P]** Mudar password.
+
+- **[1.0 P]** Adicionar uma nota com título e texto.
+    - **[2.0 E]** Título deve ter uma palavra, mas o texto pode conter várias palavras.
+        - Não deve ser possível inserir duas notas com o mesmo título para o mesmo usuário.
+
+- **[1.0 E]** Apagar uma nota dado o título.
+
+- **[1.0 P]** Mostrar notas
+
+- **[1.0 P]** Inicialize seu sistema com alguns usuários e algumas notas.
+
+## Exemplos
+
+```python
+#######################################
+# Criar usuário
+#######################################
 addUser _username _password
   ok | usuario criado
   fail: username já existe
-```
 
-
-- **[1.0 P]** Mostrar os usernames cadastrados no sistema.
-
-```
+#######################################
+# Mostrar usernames cadastrados
+#######################################
 showUsers
   _username1
   _username2
   ...
-```
 
-- **[2.0 P]** Logar e deslogar na conta de um usuário.
-
-```
+#######################################
+# Logar e deslogar
+#######################################
 login _username _senha
   done
   fail: username não existe
@@ -51,54 +69,41 @@ login _username _senha
 logout
   ok
   fail: nenhum usuário logado
-```
 
-
-- **[1.0 P]** Mudar password.
-
-```
+#######################################
+# Mudar o password
+#######################################
 changePass _oldpass _newpass
   done
   fail: password errado
   fail: ninguém logado
-```
 
-
-- **[1.0 P]** Adicionar uma nota com título e texto.
-- **[2.0 E]** Título deve ter uma palavra, mas o texto pode conter várias palavras.
-    - Não deve ser possível inserir duas notas com o mesmo título para o mesmo usuário.
-
-```
+#######################################
+# Adicionar nota
+#######################################
 addNote _titulo _texto
   done
   fail: ninguem logado
   fail: titulo ja existe
-```
 
-
-- **[1.0 E]** Apagar uma nota dado o título.
-
-```
+#######################################
+# Apagar uma nota
+#######################################
 rmNote _titulo
   done
   fail: nota não encontrada
   fail: ninguém logado
-```
 
 
-- **[1.0 P]** Mostrar notas
-
-```
+#######################################
+# Mostrar notas
+#######################################
 showNotes
   _titulo1 _texto1
   _titulo2 _texto2
 ...
+
 ```
-
-
-- **[1.0 P]** Inicialize seu sistema com alguns usuários e algumas notas.
-
-
 
 ## Pontuação
 
