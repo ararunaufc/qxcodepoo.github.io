@@ -18,37 +18,44 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 
 ---
 ## Funcionalidades
-Seu sistema deverá:
 
-- **[2.0 P] Inicializando.** 
-    - Realizar operações de soma substração e mostrar o resultado.
-- **[2.0 P] Colocando bateria.**
-    - Mostrar a bateria da calculadora.
-    - Diminuir a bateria em uma unidade em cada operação matemática realizada.
-    - Recarregar a bateria passando a quantidade de carga como parâmetro.
-        - A bateria tem carga máxima de 5 unidades.
-- **[2.0 P] Acabando a bateria.**
-  - Se não houver mais bateria, seu programa deve notificar o usuário e não dar a resposta da operação matemática.
-- **[2.0 P] Divisão.**
-- Efetuar operações de divisão. 
-    - Se houver divisão por 0, notifique o usuario. Mesmo que não haja resultado, essa divisão ainda consome uma unidade de bateria.
+- **[0 P] Iniciando a calculadora** 
+    - Ao iniciar, sua calculadora terá bateria para efetuar duas operações matemáticas
+- **[0 P] Mostrar bateria da calculadora**
+- **[0 P] Recarregar a bateria**
+    - Ao recarregar a bateria, deverá ser passado por parâmetro a quantidade de carga. O máximo de carga que a bateria suporta é 5 unidades.
+- **[0 P] Realizar operações matemáricas**
+    - Soma, subtração, divisão e multiplicação. Cada operação consome 1 unidade de carga da bateria.
+- **[0 P] Notificar sobre falta de bateria**
+    - Se o usuário tentar realizar operações e a bateria estiver com carga 0, deverá ser mostrada uma notificação sobre falta de bateria.
+    
+---
 
+## Exemplos
 
 ```python
-###BEGIN
 #######################################
-# Inicializando
+# Mostrar a bateria da calculadora
 #######################################
+
 show
   bateria = 2
 soma 4 3
   = 7
+sub 16 8
+  = 8
+mult 2 6
+  = 12
+div 8 2
+  = 4
 show
   bateria = 1
 soma 8 9
   = 17
 show
   bateria = 0
+soma 4 3
+  bateria insuficiente
 
 #######################################
 # Recarregando
@@ -85,9 +92,10 @@ class Calculadora
 + battery: int
 + maxBattery: int
 --
-+ charge(value: int): void //recarrega
-+ useBattery();            //usa uma unidade de bateria
-+ sum(a: float, b: float): float
++ charge(value: int): void
++ soma(a: float, b: float): float
++ sub(a: float, b: float): float
++ mult(a: float, b: float): float
 + div(a: float, b: float): float
 --
 + constructor(batteryMax)
