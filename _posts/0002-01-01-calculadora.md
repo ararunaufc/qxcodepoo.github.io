@@ -35,20 +35,20 @@ Seu sistema deverá:
 
 
 ```python
-
+###BEGIN
 #######################################
 # Inicializando
 #######################################
 show
-  bateria: 2
+  bateria = 2
 soma 4 3
   = 7
 show
-  bateria: 1
+  bateria = 1
 soma 8 9
-  = 17 
+  = 17
 show
-  bateria: 0
+  bateria = 0
 
 #######################################
 # Recarregando
@@ -59,7 +59,7 @@ soma 1 1
 charge 10
   done
 show
-  bateria: 5
+  bateria = 5
 div 6 3
   = 2
 
@@ -70,13 +70,11 @@ div 6 3
 div 7 0
   fail: divisao por zero
 show
-  bateria: 3
+  bateria = 3
 div 7 2
   = 3.5
-div 7 1
-  = 7
-div 4 2
-  fail: bateria insuficiente
+end
+###END
 ```
 
 ---

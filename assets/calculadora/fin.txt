@@ -1,0 +1,13 @@
+show
+soma 4 3
+show
+soma 8 9
+show
+soma 1 1
+charge 10
+show
+div 6 3
+div 7 0
+show
+div 7 2
+end

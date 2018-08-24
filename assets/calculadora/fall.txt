@@ -1,0 +1,25 @@
+show
+  bateria = 2
+soma 4 3
+  = 7
+show
+  bateria = 1
+soma 8 9
+  = 17
+show
+  bateria = 0
+soma 1 1
+  fail: bateria insuficiente
+charge 10
+  done
+show
+  bateria = 5
+div 6 3
+  = 2
+div 7 0
+  fail: divisao por zero
+show
+  bateria = 3
+div 7 2
+  = 3.5
+end

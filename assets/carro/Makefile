@@ -1,7 +1,7 @@
 CPPFLAGS = -Wall -std=c++14
 
 FOLDER = ../../_posts/
-FILE = 0002-01-01-calculadora.md
+FILE = 0003-01-01-carro.md
 
 all: clean solver fin fall
 	./solver < fin.txt > fout.txt
@@ -9,9 +9,7 @@ all: clean solver fin fall
 
 java:
 	javac Controller.java
-	java Controller < fin.txt > fout.txt
-	diff fall.txt fout.txt
-
+	java Controller
 clean:
 	rm -rf Controller.class calculadora *.txt
 fin:

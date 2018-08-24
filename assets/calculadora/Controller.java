@@ -18,31 +18,33 @@ class Calculadora {
 	}
 	boolean gastarBateria() {
 		if(this.bateria == 0){
-			System.out.print("  fail: bateria insuficiente. ");
+			System.out.print("fail: bateria insuficiente");
 			return false;
 		}
 		this.bateria -= 1;
 		return true;
 	}
 	
-	float soma(float a, float b){
+	boolean soma(float a, float b, Float result){
 		if(!gastarBateria())
-			return 0.0f;
-		return a + b;
+			return false;
+		result = a + b;
+		return true;
 	}
 	
-	float divisao(float num, float den){
+	boolean divisao(float num, float den, Float result){
 		if(!gastarBateria())
-			return 0.0f;
+			return false;
 		if(den == 0f){
-			System.out.print("  fail: divisão por 0. ");
-			return 0.0f;
+			System.out.print("fail: divisao por zero");
+			return false;
 		}
-		return num/den;
+		result = num/den;
+		return true;
 	}
 	
 	public String toString(){
-		return "bateria: " + this.bateria;
+		return "bateria = " + this.bateria;
 	}
 }
 
@@ -58,20 +60,25 @@ class Controller{
 	//nossa funcao shell que recebe uma pergunta e retorna uma resposta
 	public String shell(String line){
 		String ui[] = line.split(" ");
-
+		String saida = "";
 		if(ui[0].equals("help"))
-			return "sum _a _b\nshow\ndiv _a _b\ncharge _value";
+			saida = "soma _a _b; show; div _a _b; charge _value";
 		else if(ui[0].equals("show"))
-			return "" + calc;
-		else if(ui[0].equals("charge"))
+			saida = "" + calc;
+		else if(ui[0].equals("charge")){
 			calc.charge(Integer.parseInt(ui[1]));
-		else if(ui[0].equals("sum"))
-			return "= " + calc.soma(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]));
-		else if(ui[0].equals("div"))
-			return "= " + calc.divisao(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]));
-		else
-			return "comando invalido";
-		return "done";
+			saida = "done";
+		}else if(ui[0].equals("soma")){
+			Float result = new Float(0.0);
+			if(calc.soma(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]), result))
+				saida = ": " + result;
+		}else if(ui[0].equals("div")){
+			Float result = new Float(0.0);
+			if(calc.divisao(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]), result))
+				saida = "= " + result;
+		}else
+			saida = "comando invalido";
+		return saida;
 	}
 
 	public static void main(String[] args) {
@@ -79,8 +86,11 @@ class Controller{
 		System.out.println("Digite um comando ou help:");
 		while(true){
 			String line = scan.nextLine();
-			String answer = cont.shell(line);
-			System.out.println("  " + answer);
+			System.out.println(line);
+			if(line.equals("end"))
+				break;
+			System.out.print("  ");
+			System.out.println(cont.shell(line));
 		}
 	}
 
