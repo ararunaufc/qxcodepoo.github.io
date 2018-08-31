@@ -1,9 +1,12 @@
 show
-soma 4 3
+charge 3
 show
-soma 8 9
+sum 4 3
+div 8 2
 show
-soma 1 1
+sum 8 9
+show
+sum 4 3
 charge 10
 show
 div 6 3

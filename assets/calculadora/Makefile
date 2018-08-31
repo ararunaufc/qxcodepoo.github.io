@@ -3,21 +3,18 @@ CPPFLAGS = -Wall -std=c++14
 FOLDER = ../../_posts/
 FILE = 0002-01-01-calculadora.md
 
-all: clean solver fin fall
-	./solver < fin.txt > fout.txt
-	diff fall.txt fout.txt
+all: clean solver fall
+	./solver < fin.txt > fuser.txt
+	diff fall.txt fuser.txt
 
-java:
+java:fall
 	javac Controller.java
-	java Controller < fin.txt > fout.txt
-	diff fall.txt fout.txt
+	java Controller < fin.txt > fuser.txt
+	diff fall.txt fuser.txt
 
 clean:
-	rm -rf Controller.class calculadora *.txt
-fin:
-	@ cat $(FOLDER)$(FILE) | sed -n '/\TagInit/,/\<\TagEnd/p' | sed '/^\s*$$/d; /^\#/d; /^ /d' > fin.txt
-fall:
-	@ cat $(FOLDER)$(FILE) | sed -n '/\TagInit/,/\<\TagEnd/p' | sed '/^\s*$$/d; /^\#/d' > fall.txt
+	rm -rf solver *.txt
 
-#fout:
-#	@ cat $(FOLDER)$(FILE) | sed -n '/\TagInit/,/\<\TagEnd/p' | sed '/^\s*$$/d; /^\#/d; /^[a-zA-Z0-9]/d' | sed -e 's/^[ \t]*//' > fout.txt
+fall:
+	@ cat $(FOLDER)$(FILE) | sed -n '/\__begin__/,/\<\__end__/p' | sed '/^\s*$$/d; /^\#/d' > fall.txt
+	@ cat fall.txt | sed -n -e '/^\$$/p' | sed 's/^.//' > fin.txt

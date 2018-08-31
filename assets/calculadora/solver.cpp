@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <iomanip> //setprecision
 using namespace std;
 
 struct Calc{
@@ -7,7 +9,7 @@ struct Calc{
 
     Calc(){
         this->limiteBateria = 5;
-        this->bateria = 2;
+        this->bateria = 0;
     }
     void charge(int carga){
         bateria += carga;
@@ -16,7 +18,7 @@ struct Calc{
     }
     void gastarBateria(){
         if(bateria <= 0)
-            throw "fail: bateria insuficiente";
+            throw "failure: bateria insuficiente";
         this->bateria -= 1;
     }
     float soma(float a, float b){
@@ -26,43 +28,39 @@ struct Calc{
     float div(float a, float b){
         gastarBateria();
         if(b == 0)
-            throw "fail: divisao por zero";
+            throw "failure: divisao por zero";
         return a/b;
     }
 };
 
-#include <sstream>
-template <class T>
-T get(stringstream& ss){
-    T t;
-    ss >> t;
-    return t;
-}
 
 struct Controller{
     Calc calc;
 
     string shell(string line){
         stringstream out;
-        stringstream ui(line);
-        string op = get<string>(ui);
+        stringstream in(line);
+        string op;
+        in >> op;
         if(op == "help"){
             out << "sum _a _b; div _a _b; show; charge _carga; end";
-        }else if(op == "soma"){
+        }else if(op == "sum"){
             float a, b;
-            ui >> a >> b;
-            out << "= " << calc.soma(a, b);
+            in >> a >> b;
+            out << "= " << fixed << setprecision(1) << calc.soma(a, b);
         }else if(op == "div"){
             float a, b;
-            ui >> a >> b;
-            out << "= " << calc.div(a, b);
+            in >> a >> b;
+            out << "= " << fixed << setprecision(1) << calc.div(a, b);
         }else if(op == "charge"){
-            calc.charge(get<int>(ui));
-            out << "done";
+            float charge;
+            in >> charge;
+            calc.charge(charge);
+            out << "success";
         }else if(op == "show"){
-            out << "bateria = " << calc.bateria;
+            out << "battery = " << calc.bateria;
         }else 
-            out << "fail: comando invalido";
+            out << "failure: comando invalido";
         return out.str();
     }
 };
@@ -72,11 +70,11 @@ int main(){
     string line;
     while(true){
         getline(cin, line);
-        cout << line << endl;
+        cout << "$" << line << endl;
         if(line == "end")
             break;
         try{
-            cout << "  " << c.shell(line) << endl;
+            cout << c.shell(line) << endl;
         }catch(const char* error){
             cout << error << endl;
         }
