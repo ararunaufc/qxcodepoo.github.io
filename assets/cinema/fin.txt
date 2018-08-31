@@ -1,0 +1,15 @@
+show
+init 5
+show
+init 4
+show
+reservar davi 3232 0
+reservar joao 3131 3
+show
+reservar rute 3030 0
+reservar davi 3234 2
+cancelar davi
+show
+cancelar rita
+show
+end

@@ -32,7 +32,7 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 ```bash
 #__begin__
 #######################################
-# Mostrar a bateria da calculadora
+# Mostrar e Recarregar
 #######################################
 
 $show
@@ -41,6 +41,12 @@ $charge 3
 success
 $show
 battery = 3
+
+
+#######################################
+# Somando
+#######################################
+
 $sum 4 3
 = 7.0
 $div 8 2
