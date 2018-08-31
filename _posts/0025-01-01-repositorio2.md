@@ -17,6 +17,13 @@ Expanda a atividade nível 1 Conta Bancária e adicione os novos requisitos.
 
 ## Funcionalidades
 
+## Exemplos
+
+```python
+#######################################
+# Cadastrar um cliente com idCliente / ADMINISTRADOR
+#######################################
+
 ### Ações Administrativas
 
 - **[1.0 P]** Cadastrar um cliente com idCliente.
