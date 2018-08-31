@@ -102,6 +102,6 @@ class Controller
 ## Resposta
 
 [C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver.cpp)
-[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
-[IO_ALL](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fall.java)
-[IO_IN](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fin.java)
+
+[java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
+
