@@ -1,5 +1,5 @@
 show
-new 5 2
+init 5 2
 show
 in davi 17
 show

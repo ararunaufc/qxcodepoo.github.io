@@ -1,7 +1,7 @@
-CPPFLAGS = -Wall -std=c++14
+CPPFLAGS = -Wall -std=c++14 -g
 
 FOLDER = ../../_posts/
-FILE = 0005-01-01-topic2.md
+FILE = 0005-01-01-topic.md
 
 all: clean solver fall
 	./solver < fin.txt > fuser.txt
