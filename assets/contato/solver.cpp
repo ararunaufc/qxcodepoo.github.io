@@ -58,7 +58,6 @@ struct Contato{
 struct Controller{
     Contato cont;
     Controller(){
-
     }
     string shell(string line){
         stringstream in(line);
@@ -67,7 +66,7 @@ struct Controller{
         in >> op;
         if(op == "show"){
             out << cont.toString();
-        }else if(op == "nome"){
+        }else if(op == "init"){
             string nome;
             in >> nome;
             cont.nome = nome;

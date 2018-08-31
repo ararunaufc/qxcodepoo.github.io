@@ -1,0 +1,31 @@
+$show
+battery = 0
+$charge 3
+success
+$show
+battery = 3
+$sum 4 3
+= 7.0
+$div 8 2
+= 4.0
+$show
+battery = 1
+$sum 8 9
+= 17.0
+$show
+battery = 0
+$sum 4 3
+failure: bateria insuficiente
+$charge 10
+success
+$show
+battery = 5
+$div 6 3
+= 2.0
+$div 7 0
+failure: divisao por zero
+$show
+battery = 3
+$div 7 2
+= 3.5
+$end
