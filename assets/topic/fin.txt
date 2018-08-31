@@ -1,0 +1,22 @@
+show
+new 5 2
+show
+in davi 17
+show
+in joao 103
+show
+in ana 35
+show
+in rex 20
+in bia 16
+show
+out davi
+show
+in aragao 96
+show
+in lucas 23
+out marcelo
+out ana
+in bia
+show
+end

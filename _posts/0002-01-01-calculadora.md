@@ -13,75 +13,65 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 
 
 ---
-## [Run](/assets/calculadora/main.html)
-
-
----
 ## Funcionalidades
 
-- **[0 P] Iniciando a calculadora** 
-    - Ao iniciar, sua calculadora terá bateria para efetuar duas operações matemáticas
-- **[0 P] Mostrar bateria da calculadora**
-- **[0 P] Recarregar a bateria**
+- **[1.0 P] Iniciando a calculadora** 
+    - Ao iniciar, sua calculadora estará com a bateria vazia.
+- **[1.0 P] Mostrar bateria da calculadora**
+- **[2.0 P] Recarregar a bateria**
     - Ao recarregar a bateria, deverá ser passado por parâmetro a quantidade de carga. O máximo de carga que a bateria suporta é 5 unidades.
-- **[0 P] Realizar operações matemáricas**
-    - Soma, subtração, divisão e multiplicação. Cada operação consome 1 unidade de carga da bateria.
-- **[0 P] Notificar sobre falta de bateria**
+- **[2.0 P] Realizar operações matemáricas**
+    - Soma e divisão. Cada operação consome 1 unidade de carga da bateria.
+- **[2.0 P] Notificar sobre erros**
     - Se o usuário tentar realizar operações e a bateria estiver com carga 0, deverá ser mostrada uma notificação sobre falta de bateria.
-    
----
+    - Se o resultado da divisão for zero, deve ser notificado o erro.
 
+---
 ## Exemplos
 
-```python
+```bash
+#__begin__
 #######################################
 # Mostrar a bateria da calculadora
 #######################################
 
-show
-  bateria = 2
-soma 4 3
-  = 7
-sub 16 8
-  = 8
-mult 2 6
-  = 12
-div 8 2
-  = 4
-show
-  bateria = 1
-soma 8 9
-  = 17
-show
-  bateria = 0
-soma 4 3
-  bateria insuficiente
+$show
+battery = 0
+$charge 3
+success
+$show
+battery = 3
+$sum 4 3
+= 7.0
+$div 8 2
+= 4.0
+$show
+battery = 1
+$sum 8 9
+= 17.0
+$show
+battery = 0
+$sum 4 3
+failure: bateria insuficiente
+$charge 10
+success
+$show
+battery = 5
 
-#######################################
-# Recarregando
-#######################################
-
-soma 1 1
-  fail: bateria insuficiente
-charge 10
-  done
-show
-  bateria = 5
-div 6 3
-  = 2
 
 #######################################
 # Dividindo
 #######################################
-
-div 7 0
-  fail: divisao por zero
-show
-  bateria = 3
-div 7 2
-  = 3.5
-end
-###END
+$div 6 3
+= 2.0
+$div 7 0
+failure: divisao por zero
+$show
+battery = 3
+$div 7 2
+= 3.5
+$end
+#__end__
 ```
 
 ---
@@ -93,9 +83,8 @@ class Calculadora
 + maxBattery: int
 --
 + charge(value: int): void
-+ soma(a: float, b: float): float
-+ sub(a: float, b: float): float
-+ mult(a: float, b: float): float
++ useBattery(): void
++ sum(a: float, b: float): float
 + div(a: float, b: float): float
 --
 + constructor(batteryMax)
@@ -112,4 +101,7 @@ class Controller
 ---
 ## Resposta
 
-[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
+[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver.cpp)
+[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
+[IO_ALL](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fall.java)
+[IO_IN](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fin.java)
