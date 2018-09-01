@@ -4,15 +4,16 @@
 #include <iomanip>
 using namespace std;
 
-const string label_saque = "debito";
-const string label_deposito = "deposito";
-const string label_tarifa = "tarifa";
-const string label_extorno = "extorno";
-const string label_abertura = "abertura";
+namespace Label{
+    const string saque = "saque";
+    const string deposito = "deposito";
+    const string tarifa = "tarifa";
+    const string extorno = "extorno";
+    const string abertura = "abertura";
+}
 
 struct Operacao{
-
-
+    enum Label {debito, deposito, tarifa, extorno, abertura};
     int indice;
     string label;
     float value;
@@ -22,12 +23,12 @@ struct Operacao{
         indice(indice), label(label), value(value), saldo(saldo){
     }
 
-    string toString(int indice){
+    string toString(){
         stringstream ss;
-        ss <<  setprecision(2) << this->indice << ":"
-            << setw(8)         << this->label  << ":" 
-            << setprecision(5) << this->value  << ":" 
-            << setprecision(6) << this->saldo;
+        ss <<  setw(2) << this->indice << ":"
+            << setw(9) << this->label  << ":" 
+            << setw(5) << this->value  << ":" 
+            << setw(5) << this->saldo;
         return ss.str();
     }
 };
@@ -36,46 +37,57 @@ struct Conta{
     vector<Operacao> extrato;
     int numero;
     float saldo;
-
+    int nextOp;
     Conta(int numero = 0):
-        numero(numero), saldo(0)
+        numero(numero), saldo(0), nextOp(0)
     {
-        pushOperacao(Operacao::label_abertura, 0, 0);
+        pushOperacao(Label::abertura, 0);
     }
 
-    void pushOperacao(string label, float value, float saldo){
-        static int nextOp = 0;
+    void pushOperacao(string label, float value){
+        saldo += value;
         extrato.push_back(Operacao(nextOp, label, value, saldo));
         nextOp += 1;
     }
 
     bool debitar(string label, float value){
         if(value <= 0){
-            cout << "failure: valor invalido";
+            cout << "failure: valor invalido" << endl;
             return false;
         }
         if(value > this->saldo){
-            cout << "failure: saldo insuficiente";
+            cout << "failure: saldo insuficiente" << endl;
             return false;
         }
-        this->saldo -= value;
-        pushOperacao(label, -value, saldo));
+        pushOperacao(label, -value);
+        return true;
+    }
+
+    bool extornar(int indice){
+        if(indice < 0 || indice >= (int) extrato.size()){
+            cout << "failure: indice " << indice << " invalido" << endl;
+            return false;
+        }
+        if(extrato[indice].label != Label::tarifa){
+            cout << "failure: indice " << indice << " nao e tarifa" << endl;
+            return false;
+        }
+        pushOperacao(Label::extorno, -extrato[indice].value);
         return true;
     }
 
     bool creditar(string label, float value){
         if(value <= 0){
-            cout << "failure: valor invalido";
+            cout << "failure: valor invalido" << endl;
             return false;
         }
-        this->saldo += value;
-        pushOperacao(label, value, saldo);
+        pushOperacao(label, value);
         return true;
     }
 
     string toString(){
         stringstream ss;
-        ss << "conta: " << this->numero << "saldo: " << this->saldo;
+        ss << "conta:" << this->numero << " saldo:" << this->saldo;
         return ss.str();
     }
 
@@ -83,7 +95,7 @@ struct Conta{
         if(n == 0)
             n = extrato.size();
         vector<Operacao> saida;
-        for(int i = (int) extrato.size - n; i < (int) extrato.size(); i++)
+        for(int i = (int) extrato.size() - n; i < (int) extrato.size(); i++)
             saida.push_back(extrato[i]);
         return saida;
     }
@@ -98,53 +110,43 @@ struct Controller{
         string op;
         in >> op;
         if(op == "show"){
-            out << conta.toString();
-        }else if(op == "nome"){
+            out << conta.toString() << endl;
+        }else if(op == "init"){
             int numero;
             in >> numero;
             conta = Conta(numero);
-            out << "success";
+            out << "success" << endl;
         }else if(op == "saque"){
             float value;
             in >> value;
-            if(conta.debitar(Operacao::label_saque, value))
-                out << "success";
+            if(conta.debitar(Label::saque, value))
+                out << "success" << endl;
         }else if(op == "tarifa"){
             float value;
             in >> value;
-            if(conta.debitar(Operacao::label_tarifa, value))
-                out << "success";
+            if(conta.debitar(Label::tarifa, value))
+                out << "success" << endl;
         }else if(op == "deposito"){
             float value;
             in >> value;
-            if(conta.creditar(Operacao::label_deposito, value))
-                out << "success";
+            if(conta.creditar(Label::deposito, value))
+                out << "success" << endl;
         }else if(op == "extornar"){
             float value;
-            in >> value;
-            if(conta.debitar(Operacao::label_tarifa, value))
-                out << "success";
-        }
-
-        else if(op == "deposito"){
-            int indice;
-            in >> indice;
-            if(conta.rm(indice))
-                out << "success";
-        }else if(op == "update"){
-            string nome;
-            in >> nome;
-            conta = Conta(nome);
-            string fone_serial;
-            while(in >> fone_serial){
-                stringstream ss(fone_serial);
-                string label, fone;
-                getline(ss, label, ':');
-                getline(ss, fone);
-                if(Operacao::validate(fone))
-                    conta.add(Operacao(label, fone));
+            while(in >> value){
+                if(conta.extornar(value)) //aqui precisa ser o cout.
+                    cout << "success: indice " << value << " extornado" << endl;
             }
-            out << "success";
+        }else if(op == "extrato"){
+            for(auto& op : conta.getExtrato())
+                out << op.toString() << endl;
+        }else if(op == "extratoN"){
+            int n;
+            in >> n;
+            for(auto& op : conta.getExtrato(n))
+                out << op.toString() << endl;
+        }else{
+            out << "failure: operacao invalida" << endl;
         }
         return out.str();
     }
@@ -156,7 +158,7 @@ struct Controller{
             cout << "$" << line << endl;
             if(line == "end")
                 return;
-            cout << shell(line) << endl;
+            cout << shell(line);
         }
     }
 };
