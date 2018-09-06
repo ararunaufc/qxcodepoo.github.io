@@ -17,22 +17,24 @@ E eventualmente morrerá, se você não cuidar bem dele.
 ## Funcionalidades
 Seu sistema deverá:
 
-- **[1.0] Inicializar passando saciedade, energia e limpeza máximas do pet.
+- **[3.0] Inicializar**
+    - passando saciedade, energia e limpeza máximas do pet.
     - Todos os níveis devem ser iniciados no máximo na criação do pet.
     - Os outros atributos diamantes, que ele vai ganhar jogando e idade, ambos iniciando em 0.
-
+- **[4.0] Comendo, Jogando, Dormindo**
+- **[4.0] Morrento**
 
 ---
 
 ## Exemplo
 
 ```bash
-
+#__begin__
 #$init energy hungry clean
 $init 20 10 15
 
 $show
-#Energy Hungry Clean Money Diamonds Age
+#Energy Hungry Clean Diamonds Age
 E:20/20, H:10/10 C:15/15, D:0, A:0
 
 # play - Brincar 
@@ -87,3 +89,6 @@ $clean
 fail: pet esta morto
 $sleep
 fail: pet esta morto
+
+#__end__
+```
