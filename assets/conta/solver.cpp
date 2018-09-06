@@ -39,8 +39,7 @@ struct Conta{
     float saldo;
     int nextOp;
     Conta(int numero = 0):
-        numero(numero), saldo(0), nextOp(0)
-    {
+        numero(numero), saldo(0), nextOp(0){
         pushOperacao(Label::abertura, 0);
     }
 
@@ -55,7 +54,7 @@ struct Conta{
             cout << "failure: valor invalido" << endl;
             return false;
         }
-        if(value > this->saldo){
+        if((label == Label::saque) && (value > this->saldo)){
             cout << "failure: saldo insuficiente" << endl;
             return false;
         }

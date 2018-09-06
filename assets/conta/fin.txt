@@ -16,4 +16,6 @@ extrato
 extratoN 2
 extornar 1 5 7 50
 extrato
+tarifa 50
+extratoN 2
 end

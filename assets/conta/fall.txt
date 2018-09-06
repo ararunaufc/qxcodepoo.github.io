@@ -54,4 +54,9 @@ $extrato
  7:   tarifa:   -1:   39
  8:  extorno:    5:   44
  9:  extorno:    1:   45
+$tarifa 50
+success
+$extratoN 2
+ 9:  extorno:    1:   45
+10:   tarifa:  -50:   -5
 $end
