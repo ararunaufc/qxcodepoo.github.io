@@ -16,68 +16,66 @@ struct Calc{
         if(bateria > limiteBateria)
             bateria = limiteBateria;
     }
-    void gastarBateria(){
-        if(bateria <= 0)
-            throw "failure: bateria insuficiente";
+    bool gastarBateria(){
+        if(bateria == 0){
+            cout << "fail: bateria insuficiente" << endl;
+            return false;
+        }
         this->bateria -= 1;
+        return true;
     }
-    float soma(float a, float b){
-        gastarBateria();
-        return a + b;
+    string soma(int a, int b){
+        if(gastarBateria())
+            return to_string(a + b);
+        return "";
     }
-    float div(float a, float b){
-        gastarBateria();
-        if(b == 0)
-            throw "failure: divisao por zero";
-        return a/b;
+    string div(int a, int b){
+        if(!gastarBateria())
+            return "";
+        if(b != 0)
+            return to_string(a/b);
+        cout << "fail: divisao por zero" << endl;        
+        return "";
     }
-};
-
-
-struct Controller{
-    Calc calc;
-
-    string shell(string line){
-        stringstream out;
-        stringstream in(line);
-        string op;
-        in >> op;
-        if(op == "help"){
-            out << "sum _a _b; div _a _b; show; charge _carga; end";
-        }else if(op == "sum"){
-            float a, b;
-            in >> a >> b;
-            out << "= " << fixed << setprecision(1) << calc.soma(a, b);
-        }else if(op == "div"){
-            float a, b;
-            in >> a >> b;
-            out << "= " << fixed << setprecision(1) << calc.div(a, b);
-        }else if(op == "charge"){
-            float charge;
-            in >> charge;
-            calc.charge(charge);
-            out << "success";
-        }else if(op == "show"){
-            out << "battery = " << calc.bateria;
-        }else 
-            out << "failure: comando invalido";
-        return out.str();
+    string toString(){
+        return "battery = " + to_string(this->bateria);
     }
 };
 
 int main(){
-    Controller c;
+    Calc calc;
     string line;
     while(true){
         getline(cin, line);
         cout << "$" << line << endl;
         if(line == "end")
             break;
-        try{
-            cout << c.shell(line) << endl;
-        }catch(const char* error){
-            cout << error << endl;
-        }
+
+        stringstream in(line);
+        string op;
+        in >> op;
+        if(op == "help"){
+            cout << "sum _a _b; div _a _b; show; charge _carga; end";
+        }else if(op == "sum"){
+            int a, b;
+            in >> a >> b;
+            string value = calc.soma(a, b);
+            if(value != "")
+                cout << value << endl;
+        }else if(op == "div"){
+            int a, b;
+            in >> a >> b;
+            string value = calc.div(a, b);
+            if(value != "")
+                cout << value << endl;
+        }else if(op == "charge"){
+            int charge;
+            in >> charge;
+            calc.charge(charge);
+        }else if(op == "show"){
+            cout << calc.toString() << endl;
+        }else 
+            cout << "fail: comando invalido" << endl;
     }
     return 0;
 }

@@ -26,22 +26,20 @@ struct Carro{
         return saida.str();
     }
 
-    bool in(){
+    void in(){
         if (pass < passMax){
             pass += 1;
-            return true;
+            return;
         }
-        cout << "failure: limite de pessoas atingido";
-        return false;
+        cout << "fail: limite de pessoas atingido" << endl;
     }
 
-    bool out(){
+    void out(){
         if (pass > 0){
             pass-=1;
-            return true;
+            return;
         }
-        cout << "failure: nao ha ninguem no carro";
-        return false;
+        cout << "fail: nao ha ninguem no carro" << endl;
     }
     
     void fuel(float gas){
@@ -50,51 +48,44 @@ struct Carro{
             this->gas = gasMax;
     }
 
-    bool drive (float km){
+    void drive (float km){
         if(this->pass == 0){
-            cout << "failure: nao ha ninguem no carro";
+            cout << "fail: nao ha ninguem no carro" << endl;
         }
         else if(this->gas < (km / 10)){
-            cout << "failure: gasolina insuficiente";
+            cout << "fail: gasolina insuficiente" << endl;
         }else{
             this->gas = gas - km / 10;
             this->km = this->km + km;
-            return true;
         }
-        return false;
     }    
 };
 
 struct Controller{
     Carro car;
 
-    string shell(string line){
+    void shell(string line){
         stringstream in(line);
-        stringstream out;
         string op;
         in >> op;
         if(op == "help")
-            out << "in; out; show; fuel _gat; drive _km";
+            cout << "in; out; show; fuel _gat; drive _km" << endl;
         else if(op == "in"){
-            if(car.in())
-                out << "success";
+            car.in();
         }else if(op == "out"){
-            if(car.out())
-                out << "success";
+            car.out();
         }else if(op == "show"){
-            out << car.toString();
+            cout << car.toString() << endl;
         }else if (op == "drive"){
             float km;
             in >> km;
-            if(car.drive(km))
-                out << "success";
+            car.drive(km);
         }else if (op == "fuel"){
             float gas;
             in >> gas;
             car.fuel(gas);
-            out << "success";
-        }
-        return out.str();
+        }else
+            cout << "fail: comando invalido" << endl;
     }
 
     void exec(){
@@ -104,7 +95,7 @@ struct Controller{
             cout << "$" << line << endl;
             if(line == "end")
                 return;
-            cout << shell(line) << endl;
+            shell(line);
         }
     }
 };

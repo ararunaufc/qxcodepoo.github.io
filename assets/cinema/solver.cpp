@@ -31,36 +31,34 @@ struct Sala{
             delete(cli);
     }
 
-    bool reservar(string id, string fone, int ind){
+    void reservar(string id, string fone, int ind){
         int qtd = cadeiras.size();
         if((ind < 0) || (ind >= qtd)){
-            cout << "failure: cadeira nao existe";
-            return false;
+            cout << "failure: cadeira nao existe" << endl;
+            return;
         } 
         if(cadeiras[ind] != nullptr){ 
-            cout << "failure: cadeira ja esta ocupada"; 
-            return false;
+            cout << "failure: cadeira ja esta ocupada" << endl; 
+            return;
         }
         for(int i = 0; i < (int) cadeiras.size(); i++){
             if((cadeiras[i] != nullptr) && (cadeiras[i]->id == id)){
-                cout << "failure: cliente ja esta no cinema";
-                return false;
+                cout << "failure: cliente ja esta no cinema" << endl;
+                return;
             }
         }
         cadeiras[ind] = new Cliente(id, fone);
-        return true;
     }
 
-    bool cancelar(string id){
+    void cancelar(string id){
         for(int i = 0; i < (int) cadeiras.size(); i++){
             if(cadeiras[i] != nullptr && cadeiras[i]->id == id){
                 delete cadeiras[i];
                 cadeiras[i] = nullptr;
-                return true;
+                return;
             }
         }
-        cout << "failure: cliente nao esta no cinema";
-        return false;
+        cout << "failure: cliente nao esta no cinema" << endl;
     }
 
     string toString(){
@@ -79,31 +77,28 @@ struct Sala{
 struct Controller{
     Sala sala;
 
-    string shell(string line){
+    void shell(string line){
         stringstream in(line);
-        stringstream out;
         string op;
         in >> op;
         if(op == "show"){
-            out << sala.toString();
+            cout << sala.toString() << endl;
         }else if(op == "init"){
             int qtd;
             in >> qtd;
             sala = Sala(qtd);
-            out << "success";
         }else if(op == "reservar"){
             string id, fone;
             int ind;
             in >> id >> fone >> ind;
-            if(sala.reservar(id, fone, ind))
-                out << "success";
+            sala.reservar(id, fone, ind);
         }else if(op == "cancelar"){
             string id;
             in >> id;
-            if(sala.cancelar(id))
-                out << "success";
+            sala.cancelar(id);
         }
-        return out.str();
+        else
+            cout << "fail: comando invalido" << endl;
     }
 
     void exec(){
@@ -113,7 +108,7 @@ struct Controller{
             cout << "$" << line << endl;
             if(line == "end")
                 return;
-            cout << shell(line) << endl;
+            shell(line);
         }
     }
 };

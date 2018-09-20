@@ -1,39 +1,31 @@
 $show
 pass: 0, gas: 0, km: 0
 $in
-success
 $in
-success
 $show
 pass: 2, gas: 0, km: 0
 $in
-failure: limite de pessoas atingido
+fail: limite de pessoas atingido
 $show
 pass: 2, gas: 0, km: 0
 $out
-success
 $out
-success
 $out
-failure: nao ha ninguem no carro
+fail: nao ha ninguem no carro
 $show
 pass: 0, gas: 0, km: 0
 $fuel 25
-success
 $show
 pass: 0, gas: 10, km: 0
 $drive 10
-failure: nao ha ninguem no carro
+fail: nao ha ninguem no carro
 $in
-success
 $drive 10
-success
 $show
 pass: 1, gas: 9, km: 10
 $drive 70
-success
 $show
 pass: 1, gas: 2, km: 80
 $drive 50
-failure: gasolina insuficiente
+fail: gasolina insuficiente
 $end

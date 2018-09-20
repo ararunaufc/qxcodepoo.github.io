@@ -123,3 +123,10 @@ E:4/10, H:0/3, C:1/10, D:3, A:3
 $end
 #__end__
 ```
+
+## Testes
+[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/solver.cpp)
+
+[Teste entradas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/fin.txt)
+
+[Teste saidas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/fall.txt)

@@ -16,29 +16,35 @@ class Calculadora {
 		if(this.bateria > Calculadora.bateriaMaxima)
 			this.bateria = Calculadora.bateriaMaxima;
 	}
-	void gastarBateria() {
-		if(this.bateria == 0)
-			throw new RuntimeException("failure: bateria insuficiente");
+	boolean gastarBateria() {
+		if(this.bateria == 0){
+			System.out.println("fail: bateria insuficiente");
+			return false;
+		}
 		this.bateria -= 1;
+		return true;
 	}
 	
-	float soma(float a, float b){
-		gastarBateria();
-		return a + b;
+	String soma(int a, int b){
+		if(gastarBateria())
+			return "" + (a + b);
+		return "";
 	}
 	
-	float divisao(float num, float den){
-		gastarBateria();
-		if(den == 0f)
-			throw new RuntimeException("failure: divisao por zero");
-		return num/den;
+	String div(int num, int den){
+		if(!gastarBateria())
+			return "";
+		if(den == 0f){
+			System.out.println("fail: divisao por zero");
+			return "";
+		}
+		return "" + (num/den);
 	}
 	
 	public String toString(){
 		return "battery = " + this.bateria;
 	}
 }
-
 
 class Controller{
 	Calculadora calc;
@@ -49,23 +55,24 @@ class Controller{
 	}
 	
 	//nossa funcao shell que recebe uma pergunta e retorna uma resposta
-	public String shell(String line){
+	public void shell(String line){
 		String ui[] = line.split(" ");
-		String saida = "";
 		if(ui[0].equals("help"))
-			saida = "soma _a _b; show; div _a _b; charge _value";
+			System.out.println("soma _a _b; show; div _a _b; charge _value");
 		else if(ui[0].equals("show"))
-			saida = "" + calc;
+			System.out.println(calc);
 		else if(ui[0].equals("charge")){
 			calc.charge(Integer.parseInt(ui[1]));
-			saida = "success";
 		}else if(ui[0].equals("sum")){
-			saida = "= " + calc.soma(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]));
+			String value = calc.soma(Integer.parseInt(ui[1]), Integer.parseInt(ui[2]));
+			if(!value.equals(""))
+				System.out.println(value);
 		}else if(ui[0].equals("div")){
-			saida = "= " + calc.divisao(Float.parseFloat(ui[1]), Float.parseFloat(ui[2]));
+			String value = calc.div(Integer.parseInt(ui[1]), Integer.parseInt(ui[2]));
+			if(!value.equals(""))
+				System.out.println(value);
 		}else
-			saida = "failure: comando invalido";
-		return saida;
+			System.out.println("fail: comando invalido");
 	}
 
 	public static void main(String[] args) {
@@ -75,11 +82,7 @@ class Controller{
 			System.out.println("$" + line);
 			if(line.equals("end"))
 				break;
-			try{
-				System.out.println(cont.shell(line));
-			}catch(RuntimeException e){
-				System.out.println(e.getMessage());
-			}
+			cont.shell(line);
 		}
 	}
 }

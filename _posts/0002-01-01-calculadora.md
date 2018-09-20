@@ -21,7 +21,7 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 - **[2.0 P] Recarregar a bateria**
     - Ao recarregar a bateria, deverá ser passado por parâmetro a quantidade de carga. O máximo de carga que a bateria suporta é 5 unidades.
 - **[2.0 P] Realizar operações matemáricas**
-    - Soma e divisão. Cada operação consome 1 unidade de carga da bateria.
+    - Soma inteira e divisão inteiras. Cada operação consome 1 unidade de carga da bateria.
 - **[2.0 P] Notificar sobre erros**
     - Se o usuário tentar realizar operações e a bateria estiver com carga 0, deverá ser mostrada uma notificação sobre falta de bateria.
     - Se o resultado da divisão for zero, deve ser notificado o erro.
@@ -38,7 +38,6 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 $show
 battery = 0
 $charge 3
-success
 $show
 battery = 3
 
@@ -48,19 +47,18 @@ battery = 3
 #######################################
 
 $sum 4 3
-= 7.0
+7
 $div 8 2
-= 4.0
+4
 $show
 battery = 1
 $sum 8 9
-= 17.0
+17
 $show
 battery = 0
 $sum 4 3
-failure: bateria insuficiente
+fail: bateria insuficiente
 $charge 10
-success
 $show
 battery = 5
 
@@ -69,13 +67,13 @@ battery = 5
 # Dividindo
 #######################################
 $div 6 3
-= 2.0
+2
 $div 7 0
-failure: divisao por zero
+fail: divisao por zero
 $show
 battery = 3
 $div 7 2
-= 3.5
+3
 $end
 #__end__
 ```
@@ -109,5 +107,10 @@ class Controller
 
 [C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver.cpp)
 
-[java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
+[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
 
+[C++ com excessões](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver_ex.cpp)
+
+[Teste entradas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fin.txt)
+
+[Teste saidas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fall.txt)
