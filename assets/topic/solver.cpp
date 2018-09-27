@@ -56,13 +56,13 @@ struct Topic{
 
     bool reservar(string id, int idade){
         if(this->find(id) != -1){
-            cout << "failure: pass ja esta na topic";
+            cout << "fail: pass ja esta na topic" << endl;
             return false;
         }
         int pref = findPref();
         int norm = findNormal();
         if(pref == -1 && norm == -1){
-            cout << "failure: topic lotada";
+            cout << "fail: topic lotada" << endl;
             return false;
         }
         int pos = 0;
@@ -82,7 +82,7 @@ struct Topic{
                 return true;
             }
         }
-        cout << "failure: pass nao esta na topic";
+        cout << "fail: pass nao esta na topic" << endl;
         return false;
     }
 
@@ -101,33 +101,29 @@ struct Topic{
 };
 
 struct Controller{
-    Topic sala;
+    Topic topic;
 
-    string shell(string line){
+    void shell(string line){
         stringstream in(line);
-        stringstream out;
         string op;
         in >> op;
         if(op == "show"){
-            out << sala.toString();
+            cout << topic.toString() << endl;
         }else if(op == "init"){
             int qtd, pref;
             in >> qtd >> pref;
-            sala = Topic(qtd, pref);
-            out << "success";
+            topic = Topic(qtd, pref);
         }else if(op == "in"){
             string id;
             int idade;
             in >> id >> idade;
-            if(sala.reservar(id, idade))
-                out << "success";
+            topic.reservar(id, idade);
         }else if(op == "out"){
             string id;
             in >> id;
-            if(sala.cancelar(id))
-                out << "success";
-        }
-        return out.str();
+            topic.cancelar(id);
+        }else
+            cout << "fail: comando invalido" << endl;
     }
 
     void exec(){
@@ -137,7 +133,7 @@ struct Controller{
             cout << "$" << line << endl;
             if(line == "end")
                 return;
-            cout << shell(line) << endl;
+            shell(line);
         }
     }
 };

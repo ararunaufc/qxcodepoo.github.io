@@ -39,7 +39,7 @@ struct Contato{
 
     bool rm(int indice){
         if(indice < 0 || indice >= (int) fones.size()){
-            cout << "failure: indice invalido";
+            cout << "fail: indice invalido" << endl;
             return false;
         }
         fones.erase(fones.begin() + indice);
@@ -59,32 +59,28 @@ struct Controller{
     Contato cont;
     Controller(){
     }
-    string shell(string line){
+    void shell(string line){
         stringstream in(line);
-        stringstream out;
         string op;
         in >> op;
         if(op == "show"){
-            out << cont.toString();
+            cout << cont.toString() << endl;
         }else if(op == "init"){
             string nome;
             in >> nome;
             cont.nome = nome;
-            out << "success";
         }else if(op == "add"){
             string label, fone;
             in >> label >> fone;
             if(!Fone::validate(fone))
-                out << "failure: fone invalido";
+                cout << "fail: fone invalido" << endl;
             else{
                 cont.add(Fone(label, fone));
-                out << "success";
             }
         }else if(op == "rm"){
             int indice;
             in >> indice;
-            if(cont.rm(indice))
-                out << "success";
+            cont.rm(indice);
         }else if(op == "update"){
             string nome;
             in >> nome;
@@ -98,9 +94,7 @@ struct Controller{
                 if(Fone::validate(fone))
                     cont.add(Fone(label, fone));
             }
-            out << "success";
         }
-        return out.str();
     }
 
     void exec(){
@@ -110,7 +104,7 @@ struct Controller{
             cout << "$" << line << endl;
             if(line == "end")
                 return;
-            cout << shell(line) << endl;
+            shell(line);
         }
     }
 };

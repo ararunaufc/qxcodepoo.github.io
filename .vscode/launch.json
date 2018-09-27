@@ -5,10 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - Controller",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Controller",
+            "args": ""
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/assets/topic/solver",
+            "program": "${workspaceFolder}/assets/repositorio/solver",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

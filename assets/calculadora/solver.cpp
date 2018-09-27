@@ -1,6 +1,5 @@
 #include <iostream>
 #include <sstream>
-#include <iomanip> //setprecision
 using namespace std;
 
 struct Calc{

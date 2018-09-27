@@ -1,5 +1,5 @@
 show
-nome david
+init david
 show
 add oi 88
 add tim 99

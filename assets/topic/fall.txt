@@ -1,43 +1,34 @@
 $show
 [ ]
 $init 5 2
-success
 $show
 [ @ @ = = = ]
 $in davi 17
-success
 $show
 [ @ @ =davi:17 = = ]
 $in joao 103
-success
 $show
 [ @joao:103 @ =davi:17 = = ]
 $in ana 35
-success
 $show
 [ @joao:103 @ =davi:17 =ana:35 = ]
 $in rex 20
-success
 $in bia 16
-success
 $show
 [ @joao:103 @bia:16 =davi:17 =ana:35 =rex:20 ]
 $out davi
-success
 $show
 [ @joao:103 @bia:16 = =ana:35 =rex:20 ]
 $in aragao 96
-success
 $show
 [ @joao:103 @bia:16 =aragao:96 =ana:35 =rex:20 ]
 $in lucas 23
-failure: topic lotada
+fail: topic lotada
 $out marcelo
-failure: pass nao esta na topic
+fail: pass nao esta na topic
 $out ana
-success
 $in bia
-failure: pass ja esta na topic
+fail: pass ja esta na topic
 $show
 [ @joao:103 @bia:16 =aragao:96 = =rex:20 ]
 $end
