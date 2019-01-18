@@ -1,232 +1,216 @@
 #include <iostream>
-#include<vector>
-#include<sstream>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <sstream>
 using namespace std;
+
+template<typename K, typename V>
+class Repository{
+    map<K, V> rep;
+    string _typename;
+public:
+    Repository(string _typename = ""){
+        this->_typename = _typename;
+    }
+    void add(K k, V v){
+        if(rep.count(k) != 0)
+            throw "fail: " + _typename + " ja existe";
+        rep[k] = v;
+    }
+
+    V& get(K k){
+        auto it = rep.find(k);
+        if(it == rep.end())
+            throw "fail: " + _typename + " nao existe";
+        return it->second;
+    }
+
+    bool existe(K k){
+        return rep.count(k) != 0;
+    }
+
+    void remove(K k){
+        auto it = rep.find(k);
+        if(it == rep.end())
+            throw "fail: " + _typename + " nao existe";
+        rep.erase(it);
+    }
+    
+    vector<K> getKeys(){
+        vector<K> keys;
+        for(auto& par : rep)
+            keys.push_back(par.first);
+        return keys;
+    }
+
+    vector<pair<K, V>> getPairs(){
+        vector<K> pairs;
+        for(auto& par : rep)
+            pairs.push_back(par);
+        return pairs;
+    }
+    
+    vector<V> getValues(){
+        vector<V> values;
+        for(auto& par : rep)
+            values.push_back(par.second);
+        return values;
+    }
+};
+
 
 class Cliente{
 public:
-    string chave;
     string name;
-    int saldo;
-    // Construtor
-    Cliente(string chave = "", string name = "", int saldo = 0):
-        chave(chave), name(name), saldo(saldo)
-    {
+    string fullname;
+    float saldo;
+
+    Cliente(string name = "", string fullname = ""){
+        this->name = name;
+        this->fullname = fullname;
+        this->saldo = 0;
     }
-    // toString
-    string toString(){
-        stringstream ss;
-        ss << this->chave << " :" << this->name << " : " << this->saldo;
-        return ss.str();
-    }
+    friend ostream& operator<<(ostream &os, Cliente cliente);
 };
+ostream& operator<<(ostream &os, Cliente cliente){
+    os << cliente.name << " : " << cliente.fullname
+       << " : " << cliente.saldo;
+    return os;
+}
 
 class Transacao{
 public:
-    int ind;
-    string id;
-    int value;
-
-    Transacao(int ind = 0, string id = "", int value = 0):
-        ind(ind), id(id), value(value)
-    {
-    }
-
-    string toString(){
-        return "id:" + to_string(ind) + " [" + id + " " + to_string(value) + "]";
+    int id;
+    string idCli;
+    float value;
+    Transacao(int id = 0, string idCli = "", float value = 0.0){
+        this->id = id;
+        this->idCli = idCli;
+        this->value = value;
     }
 };
+
+ostream& operator<<(ostream& os, Transacao tr){
+    os << "id:" << tr.id << " [" << tr.idCli << " " << tr.value << "]";
+    return os;
+}
+
+template<typename T>
+T read(stringstream& ss){
+    T t;
+    ss >> t;
+    return t;
+}
 
 class Agiota{
-        //retorna indice no vector ou -1
-    int findCliente(string chave){
-        for(int i = 0; i < (int) clientes.size(); i++){
-            if(clientes[i].chave == chave){
-                return i;
-            }
-        }
-        return -1;
-    }
-    
 public:
-    vector<Cliente> clientes;
-    vector<Transacao> transacoes;
-    int saldo;
+    Repository<string, Cliente> repCli;
+    Repository<int, Transacao> repTr;
+    int nextTrId = 0;
+    float saldo;
 
-    // Construtor
-    Agiota(int saldo = 0):
-        saldo(saldo)
-    {
+    Agiota(float saldo = 0.0):
+        repCli("cliente"), repTr("transacao"){
+        this->saldo = saldo;
     }
 
-    void pushTr(string user, int value){
-        static int nextId = 0;
-        transacoes.push_back(Transacao(nextId, user, value));
-        nextId++;
+    void pushTransacao(string idCli, float value){
+        repTr.add(nextTrId, Transacao(nextTrId, idCli, value));
+        nextTrId++;
     }
-
-    string getSaldo(){
-        stringstream ss;
-        ss << "Saldo agiota: " << saldo <<endl;
-        return ss.str();
+    void receber(string idCli, float value){
+        Cliente& cliente = repCli.get(idCli);
+        if(value > cliente.saldo)
+            throw string("fail: dinheiro demais");
+        cliente.saldo -= value;
+        this->saldo += value;
+        pushTransacao(idCli, -value);
     }
-
-    Cliente * getCliente(string chave){
-        int ind = findCliente(chave);
-        if(ind == -1)
-            return nullptr;
-        return &clientes[ind];
+    void emprestar(string idCli, float value){
+        if(value > this->saldo)
+            throw string("fail: fundos insuficientes");
+        Cliente& cliente = repCli.get(idCli);
+        cliente.saldo += value;
+        this->saldo -= value;
+        pushTransacao(idCli, value);
     }
-
-    // Adicionar cliente
-    void inserir(string chave, string fullname){
-        Cliente * pcli = getCliente(chave);
-        if(pcli == nullptr)
-            clientes.push_back(Cliente(chave, fullname, 0));
-        else
-            cout << "fail: cliente ja existe" << endl;
-    }
-
-    // Emprestar dinheiro
-    bool emprestar(string chave, int value){
-        if((this->saldo < value)){
-            cout << "fail: fundos insuficientes" << endl;
-            return false;
+    void matar(string idCli){
+        repCli.remove(idCli);
+        for(auto chave : repTr.getKeys()){
+            if(repTr.get(chave).idCli == idCli)
+                repTr.remove(chave);
         }
-        if(value <= 0){
-            cout << "fail: operação invalida" << endl;
-            return false;
-        }
-        Cliente * pcli = getCliente(chave);
-        if(pcli == nullptr){
-            cout << "fail: cliente nao existe" << endl;
-            return false;
-        }
-        saldo -= value;
-        pcli->saldo -= value;
-        pushTr(chave, -value);
-        return true;
-    }
-
-    bool receber(string chave, int value){
-        Cliente * pcli = getCliente(chave);
-        if(pcli == nullptr)
-            return false;
-        if(value > -pcli->saldo){
-            cout << "fail: valor maior que a divida" << endl;
-            return false;
-        }else{
-            pcli->saldo += value;
-            pushTr(chave,value);
-            saldo += value;
-            return true;
-        }
-        return false;
-    }
-
-    bool matar(string name){
-        int ind = findCliente(name);
-        if(ind == -1)
-            return false;
-        clientes.erase(clientes.begin() + ind);
-        for(int j = (int) transacoes.size() - 1; j >= 0; j--){
-            if(name == transacoes[j].id)
-                transacoes.erase(transacoes.begin() + j);
-        }
-        return true;
-    }
-
-    string showTransacoes(){
-        stringstream ss;
-        for(auto& tr : transacoes)
-            ss << tr.toString() << endl;
-        return ss.str();
-    }
-
-    string filterTransacoes(string name){
-        auto * cli = getCliente(name);
-        if(cli == nullptr)
-            return "";
-        stringstream ss;
-        for(auto& tr : transacoes)
-            if(tr.id == name)
-                ss << tr.toString() << endl;
-        ss << "saldo " << cli->chave << ": " << cli->saldo << endl;
-        return ss.str();
-    }
-
-    // toString
-    string showClientes(){
-        stringstream ss;
-        for(auto& cli : clientes)
-            ss << cli.toString() << endl;
-        return ss.str();
     }
 };
 
-struct Controller{
+string operator+(string s, int i){
+    return s + to_string(i);
+}
+
+class Controller{
+public:
     Agiota agiota;
 
     void shell(string line){
-        stringstream in(line);
+        stringstream ss(line);
         string op;
-        in >> op;
+        ss >> op;
         if(op == "init"){
-            int valor;
-            in >> valor;
-            agiota = Agiota(valor);
-        }else if(op == "help"){
-            cout <<"init; show; tr; his; mostrar; mt; end; clear\n";
+            agiota = Agiota(read<float>(ss)); 
         }else if(op == "addCli"){
-            string nome, chave;
-            in >> chave;
-            getline(in, nome,'\n');
-            agiota.inserir(chave, nome);
+            string nome, fullname;
+            ss >> nome;
+            getline(ss, fullname);
+            agiota.repCli.add(nome, Cliente(nome, fullname.substr(1)));
         }else if(op == "resumo"){
-            cout << agiota.showClientes();
-            cout << "agiota : " << agiota.saldo << endl;
-        }else if(op == "emprestar"){
-            string chave;
-            int value;
-            in >> chave >> value;
-            agiota.emprestar(chave, value);
-        }else if(op == "historico"){
-            cout << agiota.showTransacoes();
-        }else if(op == "filtrar"){
-            string name;
-            in >> name;
-            cout << agiota.filterTransacoes(name);
-        }else if(op == "receber"){
-            string name;
-            int valor;
-            in >> name >> valor;
-            agiota.receber(name, valor);
+            for(auto& cli : agiota.repCli.getValues())
+                cout << cli << endl;
+            cout << "saldo : " << agiota.saldo << endl;
         }else if(op == "matar"){
-            string chave;
-            in >> chave;
-            agiota.matar(chave);
-        }
-        else
+            agiota.matar(read<string>(ss));
+        }else if(op == "emprestar"){
+            string nome;
+            float value;
+            ss >> nome >> value;
+            agiota.emprestar(nome, value);
+        }else if(op == "filtrar"){
+            auto idCli = read<string>(ss);
+            for(auto& tr : agiota.repTr.getValues())
+                if(tr.idCli == idCli)
+                    cout << tr << endl;
+            cout << "saldo : " << agiota.repCli.get(idCli).saldo  << endl;
+        }else if(op == "receber"){
+            string nome;
+            float value;
+            ss >> nome >> value;
+            agiota.receber(nome, value);
+        }else if(op == "historico"){
+            for(auto& tr : agiota.repTr.getValues())
+                cout << tr << endl;
+        }else
             cout << "fail: comando invalido" << endl;
-
     }
 
     void exec(){
         string line;
-
         while(true){
             getline(cin, line);
-            cout << "$" <<  line << endl;
+            cout << "$" << line << endl;
             if(line == "end")
                 break;
-            shell(line);
+            try{
+                shell(line);
+            }catch(string s){
+                cout << s << endl;
+            }
         }
     }
 };
 
-
 int main(){
     Controller controller;
     controller.exec();
-    return 0;
 }
+
+

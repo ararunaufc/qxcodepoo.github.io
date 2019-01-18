@@ -51,7 +51,6 @@ mat alice fup poo
   done
 mat edson fup
   done
-  bruno [aps fup poo]
 la
   alunos:
     alice [fup poo]
