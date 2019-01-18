@@ -30,22 +30,14 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 ## Exemplos
 
 ```bash
-#__begin__
-#######################################
-# Mostrar e Recarregar
-#######################################
-
+#__case mostrar e recarregar
 $show
 battery = 0
 $charge 3
 $show
 battery = 3
 
-
-#######################################
-# Somando
-#######################################
-
+#__case somando
 $sum 4 3
 7
 $div 8 2
@@ -62,10 +54,8 @@ $charge 10
 $show
 battery = 5
 
+#__case dividindo
 
-#######################################
-# Dividindo
-#######################################
 $div 6 3
 2
 $div 7 0
@@ -75,7 +65,6 @@ battery = 3
 $div 7 2
 3
 $end
-#__end__
 ```
 
 ---

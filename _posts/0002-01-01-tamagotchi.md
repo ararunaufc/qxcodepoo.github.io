@@ -32,7 +32,7 @@ Seu sistema deverá:
 ## Exemplo
 
 ```bash
-#__begin__
+#__case inicio
 #$init energy hungry clean
 $init 20 10 15
 
@@ -40,7 +40,7 @@ $show
 #Energy Hungry Clean Diamonds Age
 E:20/20, H:10/10, C:15/15, D:0, A:0
 
-# play - Brincar 
+#__case play - Brincar 
 # diminui 2 na energia, 1 na fome, 3 na limpeza
 # aumenta 1 na idade e 1 diamante
 $play
@@ -50,7 +50,7 @@ $play
 $show
 E:16/20, H:8/10, C:9/15, D:2, A:2
 
-# eat - Comer 
+#__case eat - Comer 
 # diminui 1 na energia, 2 na limpeza
 # aumenta 4 na fome, 1 na idade
 # e pet pode comer o quanto quiser, mas a fome nunca vai ultrapassar o limite maximo
@@ -58,7 +58,7 @@ $eat
 $show
 E:15/20, H:10/10, C:7/15, D:2, A:3
 
-# sleep - Dormir
+#__case sleep - Dormir
 # diminui 1 na fome
 # aumenta energia até o máximo e idade aumenta do número de turnos que o pet dormiu
 # no caso anterior atual, ele vai recuperar 5 de energia, então vai dormir 5 turnos
@@ -66,17 +66,19 @@ $sleep
 $show
 E:20/20, H:9/10, C:7/15, D:2, A:8
 
-# clean - tomar banho
+#__case clean - tomar banho
 # diminui 1 na fome e 3 na energia
 # aumenta 2 na idade e limpeza até o máximo
 $clean
 $show
 E:17/20, H:8/10, C:15/15, D:2, A:10
 
+#__case sleep
 # Para dormir, precisa ter perdido pelo menos 5 unidades de energia
 $sleep
 fail: nao esta com sono
 
+#__case morrer
 # Se algum atributo atingir 0, o pet morre e não poderá executar nenhuma ação
 $play
 $play
@@ -96,9 +98,12 @@ $clean
 fail: pet esta morto
 $sleep
 fail: pet esta morto
-
+$end
+```
 
 # Exemplo 2
+```bash
+#__case exemplo2
 $init 5 10 10
 $play
 $play
@@ -108,8 +113,12 @@ $play
 fail: pet esta morto
 $show
 E:0/5, H:7/10, C:1/10, D:3, A:3
+$end
+```
 
 # Exemplo 3
+```bash
+#__case exemplo3
 $init 10 3 10
 $play
 $play
@@ -119,14 +128,8 @@ $play
 fail: pet esta morto
 $show
 E:4/10, H:0/3, C:1/10, D:3, A:3
-
 $end
-#__end__
 ```
 
 ## Testes
-[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/solver.cpp)
-
-[Teste entradas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/fin.txt)
-
-[Teste saidas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi/fall.txt)
+[Respostas e VPL](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/tamagotchi)
