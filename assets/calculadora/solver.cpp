@@ -50,26 +50,26 @@ int main(){
         if(line == "end")
             break;
 
-        stringstream in(line);
+        stringstream ss(line);
         string op;
-        in >> op;
+        ss >> op;
         if(op == "help"){
             cout << "sum _a _b; div _a _b; show; charge _carga; end";
         }else if(op == "sum"){
             int a, b;
-            in >> a >> b;
+            ss >> a >> b;
             string value = calc.soma(a, b);
             if(value != "")
                 cout << value << endl;
         }else if(op == "div"){
             int a, b;
-            in >> a >> b;
+            ss >> a >> b;
             string value = calc.div(a, b);
             if(value != "")
                 cout << value << endl;
         }else if(op == "charge"){
             int charge;
-            in >> charge;
+            ss >> charge;
             calc.charge(charge);
         }else if(op == "show"){
             cout << calc.toString() << endl;
