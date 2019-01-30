@@ -27,70 +27,31 @@ void vet_show(int *vet, size_t size){
 //adiciona um elemento ao final do vetor
 //atualiza o size
 void vet_add(int *vet, size_t *size, int value){
-//_B
-    vet[*size] = value;
-    *size += 1;
-//_E
 }
 
 //retorna o primeiro indice que contem esse valor ou -1
 int vet_find(int * vet, size_t size, int value){
-//_B
-    for(size_t i = 0; i < size; i++)
-        if(vet[i] == value)
-            return i;
-//_E
     return -1;
 }
 
 //remove o elemento desse indice se existir
 //atualiza o size
 void vet_rmi(int * vet, size_t *size, int ind){
-//_B
-    if(ind < 0 || ind >= *size){
-        puts("fail");
-        return;
-    }
-    for(int i = ind; i < *size - 1; i++)
-        vet[i] = vet[i + 1];
-    *size -= 1;
-//_E
 }
 
 //remove todos os elementos com esse valor
 //atualiza size
 void vet_rma(int * vet, size_t *size, int value){
-//_B
-    for(int i = (*size - 1); i >= 0; i--)
-        if(vet[i] == value)
-            vet_rmi(vet, size, i);
-//_E
 }
 
 //mostra os elementos de trás pra frente
 void vet_rshow(int * vet, size_t size){
-//_B
-    printf("[ ");
-    for(int i = (size - 1); i >= 0; i--)
-        printf("%d ", vet[i]);
-    printf("]\n");
-//_E
 }
 
 // Se o ind for menor que 0, não faça a inserção.
 // Se ind for maior que último índice válido, insira na última posição.
 // Se ind for um índice válido, desloque todos os elementos a partir dessa posição, uma posição à frente.
 void vet_insert(int * vet, size_t *size, int ind, int value){
-//_B
-    if(ind < 0)
-        return;
-    if(ind > *size)
-        ind = *size;
-    for(int i = *size; i >= ind; --i)
-        vet[i] = vet[i - 1];
-    *size += 1;
-    vet[ind] = value;
-//_E
 }
 
 int main(){
