@@ -78,6 +78,7 @@ int main(){
             vet.insert(vet.begin() + ind, value);
             //_E
         }else if(cmd == "rma"){
+            //_B
             int value;
             ss >> value;
             for(auto it = vet.begin(); it != vet.end();){
@@ -86,6 +87,7 @@ int main(){
                 else
                     it++;
             }
+            //_E
         }else{
             puts("Comando invalido");
         }

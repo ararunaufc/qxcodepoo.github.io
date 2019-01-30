@@ -49,14 +49,6 @@ int main(){
         }else if(cmd == "rmi"){
         }else if(cmd == "ins"){
         }else if(cmd == "rma"){
-            int value;
-            ss >> value;
-            for(auto it = vet.begin(); it != vet.end();){
-                if(*it == value)
-                    it = vet.erase(it);
-                else
-                    it++;
-            }
         }else{
             puts("Comando invalido");
         }
