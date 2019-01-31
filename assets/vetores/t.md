@@ -1,18 +1,3 @@
-O objetivo da atividade é treinar estrutura de dados.
-
----
-## Funcionalidades
-
-Requisito:
-- Utilize uma estrutura de armazenamento linear que permita elementos duplicados e mantenha a ordem de inserção.
-- Sugestão:
-    - C: array
-    - C++: vector
-    - Java: ArrayList
-
-
-## SHELL
-
 ```bash
 #__case inicio
 # O comando "$show" mostra os valores do vetor.
@@ -24,7 +9,6 @@ $show
 [ 1 2 3 4 ]
 $end
 ```
-
 ```bash
 #__case rshow
 # O comando "$rshow" mostra os valores da estrutura do último para o primeiro.
@@ -38,7 +22,6 @@ $rshow
 [ 5 3 2 1 ]
 $end
 ```
-
 ```bash
 #__case add_mais_elementos
 $add 4 5 6 8 1 2 2 9
@@ -83,7 +66,6 @@ $show
 [ 2 3 6 7 1 5 ]
 $end
 ```
-
 ```bash
 #__case remover_por_indice
 # o comando "$rmi ind" remove o elemento dado o índice. Se o índice não existir, informe a falha.
@@ -108,7 +90,6 @@ $show
 [ 5 6 1 2 ]
 $end
 ```
-
 ```bash
 #__case remove_all
 # o comando "$rma V" remove todos os elemento que contém esse valor. Observe que você deve caminhar pela estrutura UMA ÚNICA VEZ removendo os elementos. NÃO utilize find + remover por índice.
@@ -128,22 +109,3 @@ $show
 [ 1 3 ]
 $end
 ```
-
-
-
----
-
-## Código base, respostas e VPL
-
-- Código de Partida
-    - [C](https://qxcodepoo.github.io/assets/vetores/base_c.c)
-    - [C++](https://qxcodepoo.github.io/assets/vetores/base_cpp.cpp)
-    - [Java](https://qxcodepoo.github.io/assets/vetores/Controller.java)
-- Respostas
-    - [C](https://qxcodepoo.github.io/assets/vetores/solver_c.c)
-    - [C++](https://qxcodepoo.github.io/assets/vetores/solver_cpp.cpp)
-    - [Java](https://qxcodepoo.github.io/assets/vetores/Controller_solver.java)
-- Testes
-    - [TIO](../assets/vetores/t.tio)
-- Para rodar os teste offline
-    - [TH](https://github.com/senapk/th)
