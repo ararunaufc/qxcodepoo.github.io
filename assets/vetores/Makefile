@@ -9,12 +9,22 @@ c: solver
 cpp: solver_cpp
 	th.py run solver_cpp $(SOURCE) -v
 
+java_solver:
+	cp Controller_solver.java Controller.java
+	javac Controller.java
+	th.py run "java Controller" $(SOURCE) -v
+
+java_base: base
+	javac Controller.java
+	th.py run "java Controller" $(SOURCE) -v
+
 vpl: $(SOURCE)
 	th.py build t.vpl $(SOURCE)
 
-mbase:
-	sed '/\/\/\_B/,\/\/\_E/d' solver.c > base.c
+base:
+	sed '/\/\/\_B/,\/\/\_E/d' solver_c.c > base_c.c
 	sed '/\/\/\_B/,\/\/\_E/d' solver_cpp.cpp > base_cpp.cpp
+	sed '/\/\/\_B/,\/\/\_E/d' Controller_solver.java > Controller.java
 
 tbase: mbase base base_cpp
 	th.py run base $(SOURCE) -q

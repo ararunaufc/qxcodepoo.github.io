@@ -41,11 +41,6 @@ int main(){
         }else if(cmd == "rshow"){
             vet_rshow(vet);
         }else if(cmd == "find"){
-            int value;
-            printf("[ ");
-            while(ss >> value) //enquanto conseguir retirar tokens
-                printf("%d ", vet_find(vet, value)); //converte pra inteiro e imprime
-            printf("]\n");
         }else if(cmd == "rmi"){
         }else if(cmd == "ins"){
         }else if(cmd == "rma"){

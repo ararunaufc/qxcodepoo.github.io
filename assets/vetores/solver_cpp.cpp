@@ -52,11 +52,13 @@ int main(){
         }else if(cmd == "rshow"){
             vet_rshow(vet);
         }else if(cmd == "find"){
+            //_B
             int value;
             printf("[ ");
             while(ss >> value) //enquanto conseguir retirar tokens
                 printf("%d ", vet_find(vet, value)); //converte pra inteiro e imprime
             printf("]\n");
+            //_E
         }else if(cmd == "rmi"){
             //_B
             int ind;
@@ -81,11 +83,11 @@ int main(){
             //_B
             int value;
             ss >> value;
-            for(auto it = vet.begin(); it != vet.end();){
-                if(*it == value)
+            for(auto it = vet.begin(); it != vet.end(); ++it){
+                if(*it == value){
                     it = vet.erase(it);
-                else
-                    it++;
+                    --it;
+                }
             }
             //_E
         }else{
