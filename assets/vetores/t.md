@@ -155,7 +155,6 @@ $end
     - [C++](https://qxcodepoo.github.io/assets/vetores/solver_cpp.cpp)
     - [Java](https://qxcodepoo.github.io/assets/vetores/Controller_solver.java)
 - Testes
-    - [MD](https://qxcodepoo.github.io/assets/vetores/t.md)
-    - [TXT](https://qxcodepoo.github.io/assets/vetores/t.md.txt)
+    - [TIO](../assets/vetores/t.tio)
 - Para rodar os teste offline
     - [TH](https://github.com/senapk/th)
