@@ -1,13 +1,3 @@
----
-layout: post
-title:  "Vetores"
-category: 'Novice' 
-introduction: Treine estrutura de dados.
-description:
-image: '/assets/vetores/figura.jpg'
-tags:
-- base
----
 
 O objetivo da atividade é treinar estrutura de dados.
 
