@@ -7,8 +7,8 @@ using namespace std;
 //mostra o vetor
 void vet_show(vector<int>& vet){
     cout << "[ ";
-    for(auto x : vet)
-        cout << x << " ";
+    for(size_t i = 0; i < vet.size(); i++)
+        cout << vet[i] << " ";
     cout << "]\n";
 }
 
@@ -45,7 +45,7 @@ int main(){
         }else if(cmd == "ins"){
         }else if(cmd == "rma"){
         }else{
-            puts("Comando invalido");
+            cout << "Comando invalido\n";
         }
     }
     return 0;

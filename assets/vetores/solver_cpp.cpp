@@ -7,8 +7,8 @@ using namespace std;
 //mostra o vetor
 void vet_show(vector<int>& vet){
     cout << "[ ";
-    for(auto x : vet)
-        cout << x << " ";
+    for(size_t i = 0; i < vet.size(); i++)
+        cout << vet[i] << " ";
     cout << "]\n";
 }
 
@@ -54,10 +54,10 @@ int main(){
         }else if(cmd == "find"){
             //_B
             int value;
-            printf("[ ");
+            cout << "[ ";
             while(ss >> value) //enquanto conseguir retirar tokens
-                printf("%d ", vet_find(vet, value)); //converte pra inteiro e imprime
-            printf("]\n");
+                cout << vet_find(vet, value) << " "; //converte pra inteiro e imprime
+            cout << "]\n";
             //_E
         }else if(cmd == "rmi"){
             //_B
@@ -83,7 +83,7 @@ int main(){
             //_B
             int value;
             ss >> value;
-            for(auto it = vet.begin(); it != vet.end(); ++it){
+            for(vector<int>::iterator it = vet.begin(); it != vet.end(); ++it){
                 if(*it == value){
                     it = vet.erase(it);
                     --it;
@@ -91,7 +91,7 @@ int main(){
             }
             //_E
         }else{
-            puts("Comando invalido");
+            cout << "Comando invalido\n";
         }
     }
     return 0;
