@@ -20,7 +20,7 @@ java_base: base
 
 vpl: $(SOURCE)
 	th.py build t.vpl $(SOURCE)
-	sed -n '/```bash/,/```/p' $(SOURCE) > t.md
+	sed -n '/^```bash/,/^```/p' $(SOURCE) > t.md
 
 base:
 	sed '/\/\/\_B/,\/\/\_E/d' solver_c.c > base_c.c

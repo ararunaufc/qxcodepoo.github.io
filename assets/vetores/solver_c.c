@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
+#include <stdlib.h> //
+#include <string.h> //strcmp strcspn __strtok_r
+#include <stdbool.h> //true e false
 
 #define MAX 10000
 

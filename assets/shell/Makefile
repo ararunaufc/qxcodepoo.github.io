@@ -15,3 +15,4 @@ list:
 
 vpl:
 	th.py build tests.vpl $(SOURCE)
+	sed -n '/^```bash/,/^```/p' $(SOURCE) > t.md
