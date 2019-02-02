@@ -80,9 +80,9 @@ public:
     string toString(){
         stringstream ss;
         ss <<  "E:" << energy << "/" << energyMax << ", "
-           <<  "H:" << hungry << "/" << hungryMax << ", "
-           <<  "C:" << clean << "/" << cleanMax << ", "
-           <<  "D:" << diamonds << ", " << "A:"  << age;
+           <<  "S:" << hungry << "/" << hungryMax << ", "
+           <<  "L:" << clean << "/" << cleanMax << ", "
+           <<  "D:" << diamonds << ", " << "I:"  << age;
         return ss.str();
     }
 

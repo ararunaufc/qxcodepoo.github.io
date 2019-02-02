@@ -15,16 +15,11 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 ---
 ## Funcionalidades
 
-- **[1.0 P] Iniciando a calculadora** 
-    - Ao iniciar, sua calculadora estará com a bateria vazia.
-- **[1.0 P] Mostrar bateria da calculadora**
-- **[2.0 P] Recarregar a bateria**
-    - Ao recarregar a bateria, deverá ser passado por parâmetro a quantidade de carga. O máximo de carga que a bateria suporta é 5 unidades.
-- **[2.0 P] Realizar operações matemáricas**
-    - Soma inteira e divisão inteiras. Cada operação consome 1 unidade de carga da bateria.
-- **[2.0 P] Notificar sobre erros**
-    - Se o usuário tentar realizar operações e a bateria estiver com carga 0, deverá ser mostrada uma notificação sobre falta de bateria.
-    - Se o resultado da divisão for zero, deve ser notificado o erro.
+- Mostrar bateria da calculadora.
+- Recarregar a bateria.
+- Realizar operações matemáricas de soma e divisão.
+- Se o usuário tentar realizar operações e a bateria estiver vazia, deverá ser mostrada uma notificação sobre falta de bateria.
+- Se o resultado da divisão for zero, deve ser notificado o erro.
 
 ---
 ## Exemplos

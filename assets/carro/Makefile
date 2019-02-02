@@ -9,3 +9,4 @@ list:
 
 vpl:
 	th.py build tests.vpl $(SOURCE)
+	../bin/filter_md.sh $(SOURCE) > t.md
