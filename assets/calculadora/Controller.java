@@ -1,20 +1,19 @@
 import java.util.Scanner;
 class Calculadora {
-	static final int bateriaInicial = 0;
-	static final int bateriaMaxima = 5;
-	
+	int bateriaMaxima;
 	int bateria;
 	
-	public Calculadora() {
-		this.bateria = Calculadora.bateriaInicial;
+	public Calculadora(int bateriaMaxima) {
+		this.bateriaMaxima = bateriaMaxima;
+		this.bateria = 0;
 	}
 	
 	void charge(int value){
 		if(value < 0)
 			return;
 		this.bateria += value;
-		if(this.bateria > Calculadora.bateriaMaxima)
-			this.bateria = Calculadora.bateriaMaxima;
+		if(this.bateria > this.bateriaMaxima)
+			this.bateria = this.bateriaMaxima;
 	}
 	boolean gastarBateria() {
 		if(this.bateria == 0){
@@ -34,7 +33,7 @@ class Calculadora {
 	String div(int num, int den){
 		if(!gastarBateria())
 			return "";
-		if(den == 0f){
+		if(den == 0){
 			System.out.println("fail: divisao por zero");
 			return "";
 		}
@@ -51,7 +50,7 @@ class Controller{
 	static Scanner scan = new Scanner(System.in);
 	
 	public Controller() {
-		calc = new Calculadora();
+		calc = new Calculadora(0);
 	}
 	
 	//nossa funcao shell que recebe uma pergunta e retorna uma resposta
@@ -59,6 +58,8 @@ class Controller{
 		String ui[] = line.split(" ");
 		if(ui[0].equals("help"))
 			System.out.println("soma _a _b; show; div _a _b; charge _value");
+		else if(ui[0].equals("init"))
+			this.calc = new Calculadora(Integer.parseInt(ui[1]));
 		else if(ui[0].equals("show"))
 			System.out.println(calc);
 		else if(ui[0].equals("charge")){

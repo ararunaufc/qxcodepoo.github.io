@@ -6,8 +6,8 @@ struct Calc{
     int bateria;
     int limiteBateria;
 
-    Calc(){
-        this->limiteBateria = 5;
+    Calc(int limiteBateria = 0){
+        this->limiteBateria = limiteBateria;
         this->bateria = 0;
     }
     void charge(int carga){
@@ -55,6 +55,10 @@ int main(){
         ss >> op;
         if(op == "help"){
             cout << "sum _a _b; div _a _b; show; charge _carga; end";
+        }else if(op == "init"){
+            int max;
+            ss >> max;
+            calc = Calc(max);
         }else if(op == "sum"){
             int a, b;
             ss >> a >> b;
