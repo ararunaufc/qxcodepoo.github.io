@@ -20,7 +20,7 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 - **[1.0 P] Mostrar bateria da calculadora**
 - **[2.0 P] Recarregar a bateria**
     - Ao recarregar a bateria, deverá ser passado por parâmetro a quantidade de carga. O máximo de carga que a bateria suporta é 5 unidades.
-- **[2.0 P] Realizar operações matemáricas**
+- **[2.0 P] Realizar operações matemáticas**
     - Soma inteira e divisão inteiras. Cada operação consome 1 unidade de carga da bateria.
 - **[2.0 P] Notificar sobre erros**
     - Se o usuário tentar realizar operações e a bateria estiver com carga 0, deverá ser mostrada uma notificação sobre falta de bateria.
@@ -94,12 +94,7 @@ class Controller
 ---
 ## Resposta
 
-[C++](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver.cpp)
-
-[Java](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/Controller.java)
-
-[C++ com excessões](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/solver_ex.cpp)
-
-[Teste entradas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fin.txt)
-
-[Teste saidas](https://github.com/qxcodepoo/qxcodepoo.github.io/tree/master/assets/calculadora/fall.txt)
+- [C++][https://qxcodepoo.github.io/assets/calculadora/solver.cpp)
+- [Java](https://qxcodepoo.github.io/assets/calculadora/Controller.java)
+- [C++ com excessões](https://qxcodepoo.github.io/assets/calculadora/solver_ex.cpp)
+- [Testes](https://qxcodepoo.github.io/assets/calculadora/t.md)
