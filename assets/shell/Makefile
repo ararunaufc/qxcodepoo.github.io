@@ -3,16 +3,19 @@ SOURCE = ../../_posts/0001-01-01-shell.md
 
 all: cpp java vpl
 
+open:
+	code $(SOURCE)
+
 cpp: solver 
-	th.py run solver $(SOURCE) -v
+	th run solver $(SOURCE) -v
 
 java:
 	javac Solver.java
-	th.py run "java Solver" $(SOURCE) -v
+	th run "java Solver" $(SOURCE) -v
 
 list:
-	th.py list $(SOURCE)
+	th list $(SOURCE)
 
 vpl:
-	th.py build tests.vpl $(SOURCE)
+	th build tests.vpl $(SOURCE)
 	sed -n '/^```bash/,/^```/p' $(SOURCE) > t.md

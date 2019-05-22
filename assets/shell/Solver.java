@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 public class Solver{
-	static Scanner scan = new Scanner(System.in);	
-
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
 		double reg = 0.0;
 
 		while(true){

@@ -40,6 +40,7 @@ $show
 $end
 ```
 ```bash
+#__case addm
 # o comando "$addm V [V ...]" adiciona vários valores em linha.
 $show
 0.00
