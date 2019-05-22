@@ -130,8 +130,9 @@
       <w>176</w>
       <h>32</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=n..1</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=n
+m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;200.0;10.0</additional_attributes>
   </element>
   <element>
@@ -142,8 +143,9 @@ m1=n..1</panel_attributes>
       <w>240</w>
       <h>128</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=n..1</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=n
+m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;280.0;140.0</additional_attributes>
   </element>
   <element>
@@ -151,11 +153,12 @@ m1=n..1</panel_attributes>
     <coordinates>
       <x>760</x>
       <y>232</y>
-      <w>48</w>
+      <w>32</w>
       <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m1=n..1</panel_attributes>
+m1=n
+m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
 </diagram>
