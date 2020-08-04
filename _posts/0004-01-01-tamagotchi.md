@@ -178,4 +178,4 @@ public:
 - Respostas
     - [C++](https://qxcodepoo.github.io/assets/calculadora/solver.cpp)
 - Testes
-    - [MD](https://qxcodepoo.github.io/assets/calculadora/t.md)
+    - [MD](https://qxcodepoo.github.io/assets/tamagotchi/t.md)
